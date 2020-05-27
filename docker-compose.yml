@@ -1,0 +1,14 @@
+version: '2.3'
+services:
+  flask:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: gunicorn --bind 0.0.0.0:5000 --reload wsgi:app
+    environment:
+      PYTHONPATH: .
+    expose:
+      - 5000
+    ports:
+      - ${SE_API_PORT}:5000
