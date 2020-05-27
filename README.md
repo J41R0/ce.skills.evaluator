@@ -1,6 +1,6 @@
 # Skills evaluator service
 
-Default skill evaluator project for cuban engineer plataform
+Skills evaluator project for cuban.engineer plataform
 
 ## Install and run the application 
 
@@ -12,8 +12,8 @@ Default skill evaluator project for cuban engineer plataform
     ```
 2. Clone repository:
     ```
-    (venv) $ git clone git@gitlab.com:aleph-engineering/skills-evaluator.git
-    (venv) $ cd skills-evaluator
+    (venv) $ git clone git@gitlab.com:cuban.engineer-open-source/cuban.engineer-skills-evaluator.git
+    (venv) $ cd cuban.engineer-skills-evaluator
     ```
 3. Install setup tools:
     ```
