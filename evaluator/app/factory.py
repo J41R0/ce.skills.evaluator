@@ -22,8 +22,9 @@ class ProfileFactory:
     @staticmethod
     def __repository_from(repository: dict) -> Repository:
         return Repository(repository['id'], repository['isFork'], repository['contributors'],
-                          repository['totalCommits'], repository['userCommits'], repository['forks'],
-                          repository['stars'], repository['views'])
+                          repository['totalCommits'], repository['userCommits'],
+                          repository['forks'], repository['stars'], repository['views'],
+                          repository['totalAdditions'], repository['userAdditions'])
 
     @staticmethod
     def __skill_from(skill: dict) -> Skill:
