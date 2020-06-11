@@ -37,7 +37,9 @@ class Evaluator(Resource):
                       "userCommits": 16,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 2,
@@ -47,7 +49,9 @@ class Evaluator(Resource):
                       "userCommits": 1,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 3,
@@ -57,7 +61,9 @@ class Evaluator(Resource):
                       "userCommits": 1,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 4,
@@ -67,7 +73,9 @@ class Evaluator(Resource):
                       "userCommits": 0,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     }
                   ],
                   "skills": [
@@ -95,7 +103,9 @@ class Evaluator(Resource):
                       "userCommits": 16,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 5,
+                      "totalAdditions": 15
                     }
                   ],
                   "skills": [
