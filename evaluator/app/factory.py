@@ -1,6 +1,8 @@
 from collections import defaultdict
+
 from evaluator.domain.profile_objects import Profile, Repository, Skill
 from evaluator.domain.algorithms.default import DefaultEvaluator, DefaultPreprocessor
+from evaluator.domain.algorithms.GitHub import GitHubEvaluator, GitHubPreprocessor
 
 
 class ProfileFactory:
@@ -15,8 +17,8 @@ class ProfileFactory:
                                     profile['stats'],
                                     repositories,
                                     skills,
-                                    preprocessors[profile['provider']],
-                                    evaluators[profile['provider']])
+                                    preprocessors[str(profile['provider']).upper()],
+                                    evaluators[str(profile['provider']).upper()])
         return generated_profile
 
     @staticmethod
@@ -33,9 +35,11 @@ class ProfileFactory:
     @staticmethod
     def __evaluators() -> dict:
         evaluators = defaultdict(DefaultEvaluator)
+        evaluators["GITHUB"] = GitHubEvaluator()
         return evaluators
 
     @staticmethod
     def __preprocessors() -> dict:
         preprocessors = defaultdict(DefaultPreprocessor)
+        preprocessors["GITHUB"] = GitHubPreprocessor()
         return preprocessors
