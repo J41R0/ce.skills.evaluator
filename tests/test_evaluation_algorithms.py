@@ -18,8 +18,8 @@ class DefaultEvaluatorTests(unittest.TestCase):
 
         def_input_dict = json.loads(def_input)
         self.default_profile = ProfileFactory.from_dict(def_input_dict['profiles'][0])
-        self.scale_lower_bound = def_input_dict['scale_lower_bound']
-        self.scale_higher_bound = def_input_dict['scale_higher_bound']
+        self.scale_lower_bound = def_input_dict['scaleLowerBound']
+        self.scale_higher_bound = def_input_dict['scaleHigherBound']
 
     def test_evaluation_function_default(self):
         expected_result = {
