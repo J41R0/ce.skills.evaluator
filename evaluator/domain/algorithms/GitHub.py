@@ -28,4 +28,13 @@ class GitHubPreprocessor(Preprocessor):
         Returns: The same Profile object
 
         """
-        pass
+        projects_contribution = {}
+        for repository in profile.repositories:
+            if repository.total_additions != 0:
+                projects_contribution[repository.id] = repository.user_additions / repository.total_additions
+            else:
+                projects_contribution[repository.id] = 1
+
+        for skill in profile.skills:
+            skill.value = skill.value * projects_contribution[skill.repository_id]
+        return profile
