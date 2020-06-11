@@ -4,8 +4,8 @@ import os.path
 import unittest
 
 sys.path.append('../')
-from evaluator.domain.algorithms.default import DefaultEvaluator
 from evaluator.app.factory import ProfileFactory
+from evaluator.domain.algorithms.default import DefaultEvaluator, DefaultPreprocessor
 
 
 class DefaultEvaluatorTests(unittest.TestCase):
@@ -68,3 +68,7 @@ class DefaultEvaluatorTests(unittest.TestCase):
         self.default_profile.skills = default_profile_skills
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
+
+    def test_default_preprocessor(self):
+        preprocessor = DefaultPreprocessor()
+        self.assertEqual(self.default_profile, preprocessor.preprocess(self.default_profile))
