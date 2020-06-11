@@ -84,8 +84,8 @@ class GitHubEvaluatorTests(unittest.TestCase):
 
         def_input_dict = json.loads(def_input)
         self.git_hub_profile = ProfileFactory.from_dict(def_input_dict['profiles'][0])
-        self.scale_lower_bound = def_input_dict['scale_lower_bound']
-        self.scale_higher_bound = def_input_dict['scale_higher_bound']
+        self.scale_lower_bound = def_input_dict['scaleLowerBound']
+        self.scale_higher_bound = def_input_dict['scaleHigherBound']
 
     def test_preprocess_fuction(self):
         expected_result = {
