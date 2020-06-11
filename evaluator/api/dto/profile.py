@@ -13,7 +13,9 @@ class ProfilesDto:
         'stars': fields.Integer(required=False, description='repository stars amount', default=0),
         'views': fields.Integer(required=False, description='views amount', default=0),
         'totalCommits': fields.Integer(required=False, description='repository total commit', default=0),
-        'userCommits': fields.Integer(required=False, description='repository user commit', default=0)
+        'userCommits': fields.Integer(required=False, description='repository user commit', default=0),
+        'totalAdditions': fields.Integer(required=False, description='lines of code in the repository', default=0),
+        'userAdditions': fields.Integer(required=False, description='lines of codes added by the user', default=0)
     })
 
     skill = api_namespace.model('skill', {
