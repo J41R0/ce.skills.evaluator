@@ -107,8 +107,8 @@ class Evaluator(Resource):
                   ]
                 }
           ],
-          "scale_lower_bound": -1,
-          "scale_higher_bound": 1
+          "scaleLowerBound": -1,
+          "scaleHigherBound": 1
         }
         """
         profiles_data = ProfilesDto()
