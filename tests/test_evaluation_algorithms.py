@@ -88,22 +88,6 @@ class GitHubEvaluatorTests(unittest.TestCase):
         self.scale_higher_bound = def_input_dict['scaleHigherBound']
 
     def test_preprocess_fuction(self):
-        expected_result = {
-            "skills": [
-                {
-                    "repositoryId": 0,
-                    "name": "C++",
-                    "value": 100000
-                },
-                {
-                    "repositoryId": 1,
-                    "name": "Java",
-                    "value": 100000
-                }
-            ]
-        }
         preprocessor = GitHubPreprocessor()
-        update_profile = preprocessor.preprocess(self.git_hub_profile)
-        self.assertEqual(0.1, update_profile.repositories[0].user_additions)
-        self.assertEqual(0, update_profile.repositories[1].user_additions)
-        self.assertEqual(expected_result, update_profile.skills)
+        preprocessor.preprocess(self.git_hub_profile)
+        self.assertEqual(100000, self.git_hub_profile.skills[0].value)
