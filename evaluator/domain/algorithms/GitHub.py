@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
 
@@ -35,6 +37,12 @@ class GitHubPreprocessor(Preprocessor):
             else:
                 projects_contribution[repository.id] = 1
 
+        total_project_bytes = defaultdict(int)
         for skill in profile.skills:
-            skill.value = skill.value * projects_contribution[skill.repository_id]
+            total_project_bytes[skill.repository_id] += skill.value
+
+        for skill in profile.skills:
+            skill.contribution_factor = (skill.value * projects_contribution[skill.repository_id]) / total_project_bytes[
+                skill.repository_id]
+
         return profile
