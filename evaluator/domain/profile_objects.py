@@ -34,7 +34,7 @@ class Repository:
 class Skill:
     def __init__(self, repository_id: int, name: str, value: int):
         self.repository_id = repository_id
-        self.name = name
+        self.name = name.upper()
         self.value = value
         self.contribution_factor = 1
 
