@@ -36,6 +36,7 @@ class Skill:
         self.repository_id = repository_id
         self.name = name
         self.value = value
+        self.contribution_factor = 1
 
 
 class EvaluatedSkill:
