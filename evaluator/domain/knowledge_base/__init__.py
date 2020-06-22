@@ -6,4 +6,5 @@ def load_project_fcm():
         project_kb_json = file.read()
         knowledge_base = from_json(project_kb_json)
         knowledge_base.set_map_decision_function("exited")
+        knowledge_base.flag_mem_influence = False
         return knowledge_base
