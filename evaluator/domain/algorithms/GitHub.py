@@ -26,7 +26,7 @@ class GitHubEvaluator(Evaluator):
         for skill in profile.skills:
             skills_relation[skill.repository_id].append(skill)
         for repo_id in skills_relation:
-            projects_fcm.append(knowledge_base.load_project_fcm())
+            projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
                 projects_fcm[-1].init_concept(skill.name, skill.contribution_factor, required_presence=False)
             projects_fcm[-1].run_inference()
