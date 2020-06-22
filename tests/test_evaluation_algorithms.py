@@ -24,7 +24,7 @@ class DefaultEvaluatorTests(unittest.TestCase):
     def test_evaluation_function_default(self):
         expected_result = {
             "C++": 8.807970779778824,
-            "Java": 5.4983399731247795
+            "JAVA": 5.4983399731247795
         }
         evaluator = DefaultEvaluator()
         skills_evaluated = evaluator.evaluate(self.default_profile,
@@ -36,7 +36,7 @@ class DefaultEvaluatorTests(unittest.TestCase):
     def test_evaluation_function_scale_negative_difference(self):
         expected_result = {
             "C++": 0.5231883119115297,
-            "Java": -0.8006640107500882
+            "JAVA": -0.8006640107500882
         }
 
         scale_lower_bound = self.scale_lower_bound
@@ -56,7 +56,7 @@ class DefaultEvaluatorTests(unittest.TestCase):
     def test_evaluation_function_negative_skill_value(self):
         expected_result = {
             "C++": 2.6894142136999513,
-            "Java": 2.6894142136999513
+            "JAVA": 2.6894142136999513
         }
 
         default_profile_skills = self.default_profile.skills.copy()
