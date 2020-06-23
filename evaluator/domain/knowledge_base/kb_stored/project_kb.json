@@ -8,6 +8,14 @@
   "result": "average",
   "concepts": [
     {
+      "id": "C++",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "JAVA",
+      "type": "SIMPLE"
+    },
+    {
       "id": "JAVASCRIPT",
       "type": "SIMPLE"
     },
