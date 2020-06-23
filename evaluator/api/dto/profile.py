@@ -13,7 +13,9 @@ class ProfilesDto:
         'stars': fields.Integer(required=False, description='repository stars amount', default=0),
         'views': fields.Integer(required=False, description='views amount', default=0),
         'totalCommits': fields.Integer(required=False, description='repository total commit', default=0),
-        'userCommits': fields.Integer(required=False, description='repository user commit', default=0)
+        'userCommits': fields.Integer(required=False, description='repository user commit', default=0),
+        'totalAdditions': fields.Integer(required=False, description='lines of code in the repository', default=0),
+        'userAdditions': fields.Integer(required=False, description='lines of codes added by the user', default=0)
     })
 
     skill = api_namespace.model('skill', {
@@ -35,12 +37,12 @@ class ProfilesDto:
     profile_list = api_namespace.model('profile_list', {
         'profiles': fields.List(fields.Nested(profile), required=True,
                                 description='list of profiles'),
-        'scale_lower_bound': fields.Integer(required=False, description='output minimum value', default=-1),
-        'scale_higher_bound': fields.Integer(required=False, description='output maximum value', default=1)
+        'scaleLowerBound': fields.Integer(required=False, description='output minimum value', default=-1),
+        'scaleHigherBound': fields.Integer(required=False, description='output maximum value', default=1)
     })
 
     def __init__(self):
         input_data = get_content(ProfilesDto.profile_list)
         self.profiles = input_data['profiles']
-        self.scale_lower_bound = input_data['scale_lower_bound']
-        self.scale_higher_bound = input_data['scale_higher_bound']
+        self.scale_lower_bound = input_data['scaleLowerBound']
+        self.scale_higher_bound = input_data['scaleHigherBound']

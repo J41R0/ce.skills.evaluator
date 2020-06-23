@@ -18,7 +18,7 @@ class Profile:
 
 class Repository:
     def __init__(self, repository_id: int, is_fork: bool, contributors: int, total_commits: int, user_commits: int,
-                 forks: int, stars: int, views: int):
+                 forks: int, stars: int, views: int, total_additions: int, user_additions: int):
         self.id = repository_id
         self.is_fork = is_fork
         self.contributors = contributors
@@ -27,13 +27,16 @@ class Repository:
         self.forks = forks
         self.stars = stars
         self.views = views
+        self.user_additions = user_additions
+        self.total_additions = total_additions
 
 
 class Skill:
     def __init__(self, repository_id: int, name: str, value: int):
         self.repository_id = repository_id
-        self.name = name
+        self.name = name.upper()
         self.value = value
+        self.contribution_factor = 1
 
 
 class EvaluatedSkill:

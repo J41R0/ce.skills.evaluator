@@ -1,0 +1,52 @@
+{
+  "iter": 500,
+  "activation_function": "sigmoid_hip",
+  "actv_func_params": {
+    "lambda_val": 1
+  },
+  "memory_influence": false,
+  "result": "average",
+  "concepts": [
+    {
+      "id": "C++",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "JAVA",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "JAVASCRIPT",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "HTML",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "CSS",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "FRONTEND",
+      "type": "DECISION"
+    }
+  ],
+  "relations": [
+    {
+      "origin": "JAVASCRIPT",
+      "destiny": "FRONTEND",
+      "weight": 1
+    },
+    {
+      "origin": "HTML",
+      "destiny": "FRONTEND",
+      "weight": 0.25
+    },
+    {
+      "origin": "CSS",
+      "destiny": "FRONTEND",
+      "weight": 0.1
+    }
+  ]
+}

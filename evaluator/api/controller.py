@@ -15,7 +15,7 @@ class Evaluator(Resource):
     @api_namespace.marshal_with(EvaluatedSkillsDto.skill_list)
     @api_namespace.expect(ProfilesDto.profile_list, validate=True)
     def post(self):
-        """Evaluate engineers according to according to profiles data
+        """Evaluate engineers according to profiles data
         ## Description
         Default evaluation service used by Cuban Engineer platform
         Example input data:
@@ -37,7 +37,9 @@ class Evaluator(Resource):
                       "userCommits": 16,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 2,
@@ -47,7 +49,9 @@ class Evaluator(Resource):
                       "userCommits": 1,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 3,
@@ -57,7 +61,9 @@ class Evaluator(Resource):
                       "userCommits": 1,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     },
                     {
                       "id": 4,
@@ -67,7 +73,9 @@ class Evaluator(Resource):
                       "userCommits": 0,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 0,
+                      "totalAdditions": 0
                     }
                   ],
                   "skills": [
@@ -95,7 +103,9 @@ class Evaluator(Resource):
                       "userCommits": 16,
                       "forks": 0,
                       "stars": 0,
-                      "views": 0
+                      "views": 0,
+                      "userAdditions": 5,
+                      "totalAdditions": 15
                     }
                   ],
                   "skills": [
@@ -107,8 +117,8 @@ class Evaluator(Resource):
                   ]
                 }
           ],
-          "scale_lower_bound": -1,
-          "scale_higher_bound": 1
+          "scaleLowerBound": -1,
+          "scaleHigherBound": 1
         }
         """
         profiles_data = ProfilesDto()
