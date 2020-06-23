@@ -34,7 +34,8 @@ class GitHubEvaluator(Evaluator):
         final_fcm = join_maps(projects_fcm)
         result = final_fcm.get_final_state(nodes_type='any')
         for skill_name in result:
-            evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))
+            if result[skill_name] > 0:
+                evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))
         return evaluated_skill_list
 
 
