@@ -90,4 +90,4 @@ class GitHubEvaluatorTests(unittest.TestCase):
     def test_preprocess_fuction(self):
         preprocessor = GitHubPreprocessor()
         preprocessor.preprocess(self.git_hub_profile)
-        self.assertEqual(100000, self.git_hub_profile.skills[0].value)
+        self.assertEqual(0.1, self.git_hub_profile.skills[0].contribution_factor)
