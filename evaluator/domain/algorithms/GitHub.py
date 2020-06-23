@@ -31,7 +31,7 @@ class GitHubEvaluator(Evaluator):
                 projects_fcm[-1].init_concept(skill.name, skill.contribution_factor, required_presence=False)
             projects_fcm[-1].run_inference()
 
-        final_fcm = join_maps(projects_fcm)
+        final_fcm = join_maps(projects_fcm, ignore_zeros=True)
         result = final_fcm.get_final_state(nodes_type='any')
         for skill_name in result:
             if result[skill_name] > 0:
