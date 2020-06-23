@@ -91,3 +91,14 @@ class GitHubEvaluatorTests(unittest.TestCase):
         preprocessor = GitHubPreprocessor()
         preprocessor.preprocess(self.git_hub_profile)
         self.assertEqual(0.1, self.git_hub_profile.skills[0].contribution_factor)
+
+    def test_evaluation_function(self):
+        preprocessor = GitHubPreprocessor()
+        preprocessor.preprocess(self.git_hub_profile)
+        evaluator = GitHubEvaluator()
+        result = evaluator.evaluate(self.git_hub_profile, scale_lower_bound=0, scale_higher_bound=1)
+        for eval_sk in result:
+            if eval_sk.name == "C++":
+                self.assertEqual(0.1, eval_sk.value)
+            if eval_sk.name == "JAVA":
+                self.assertEqual(1.0, eval_sk.value)
