@@ -29,7 +29,7 @@ def evaluate_skills(profiles: list, scale_lower_bound: float, scale_higher_bound
     evaluations = SkillsEvaluation(scale_lower_bound, scale_higher_bound)
     for profile in profiles:
         current_profile = ProfileFactory.from_dict(profile)
-        evaluated_skills = current_profile.evaluate_skills(scale_lower_bound, scale_higher_bound)
+        evaluated_skills = current_profile.evaluate_skills()
         for skill in evaluated_skills:
             evaluations.add_skill_evaluation(skill.name, current_profile.provider_name, skill.value)
     return evaluations
