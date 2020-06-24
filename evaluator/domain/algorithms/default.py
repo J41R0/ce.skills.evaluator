@@ -8,7 +8,7 @@ from evaluator.domain.provider_processor import Evaluator, Preprocessor
 class DefaultEvaluator(Evaluator):
     __MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT = 50000
 
-    def evaluate(self, profile: Profile, scale_lower_bound: float, scale_higher_bound: float) -> list:
+    def evaluate(self, profile: Profile) -> list:
         """
         Evaluate a profile assuming that scale_lower_bound < scale_higher_bound and scale_higher_bound > 0.
         Other values do not break the process buy may return unexpected evaluation values
@@ -24,22 +24,14 @@ class DefaultEvaluator(Evaluator):
         for skill in profile.skills:
             evaluation = DefaultEvaluator.__normalized_evaluation(profile.provider_name, skill.value)
             evaluated_skills[skill.name].append(evaluation)
-        return DefaultEvaluator.__to_evaluated_skills(evaluated_skills, scale_lower_bound, scale_higher_bound)
+        return DefaultEvaluator.__to_evaluated_skills(evaluated_skills)
 
     @staticmethod
-    def __scale_value(value: float, scale_lower_bound: float, scale_higher_bound: float) -> float:
-        max_positive_scale = scale_higher_bound + abs(scale_lower_bound)
-        scaled_in_one_to_zero_range = (value + 1) / 2
-        skill_evaluation_scaled = (scaled_in_one_to_zero_range * max_positive_scale) - abs(scale_lower_bound)
-        return skill_evaluation_scaled
-
-    @staticmethod
-    def __to_evaluated_skills(evaluated_skills: defaultdict, scale_lower_bound: float, scale_higher_bound: float):
+    def __to_evaluated_skills(evaluated_skills: defaultdict):
         evaluated_skill_list = []
         for skill_name in evaluated_skills:
             evaluation = sum(evaluated_skills[skill_name]) / len(evaluated_skills[skill_name])
-            scaled_evaluation = DefaultEvaluator.__scale_value(evaluation, scale_lower_bound, scale_higher_bound)
-            evaluated_skill_list.append(EvaluatedSkill(skill_name, scaled_evaluation))
+            evaluated_skill_list.append(EvaluatedSkill(skill_name, evaluation))
         return evaluated_skill_list
 
     @staticmethod

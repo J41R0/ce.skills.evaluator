@@ -8,7 +8,7 @@ from evaluator.domain.provider_processor import Evaluator, Preprocessor
 
 
 class GitHubEvaluator(Evaluator):
-    def evaluate(self, profile: Profile, scale_lower_bound: float, scale_higher_bound: float) -> list:
+    def evaluate(self, profile: Profile) -> list:
         """
         Evaluate a GitHub profile
         Args:
