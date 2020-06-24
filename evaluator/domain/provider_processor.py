@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT = 50000
+
 
 class Evaluator(ABC):
 

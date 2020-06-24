@@ -3,10 +3,10 @@ from collections import defaultdict
 
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
+from evaluator.domain.provider_processor import MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT
 
 
 class DefaultEvaluator(Evaluator):
-    __MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT = 50000
 
     def evaluate(self, profile: Profile) -> list:
         """
@@ -37,7 +37,7 @@ class DefaultEvaluator(Evaluator):
     @staticmethod
     def __normalized_evaluation(provider_name, value):
         if provider_name == "GITHUB" or provider_name == "GITLAB":
-            relevance_indicator = value / DefaultEvaluator.__MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT
+            relevance_indicator = value / MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT
             values_between_one_and_minus_one_exclusive = DefaultEvaluator.__sigmoid_hiperbolic(relevance_indicator)
         else:
             values_between_one_and_minus_one_exclusive = DefaultEvaluator.__sigmoid_hiperbolic(value)
