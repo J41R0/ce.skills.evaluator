@@ -1,9 +1,9 @@
-from math import exp
 from collections import defaultdict
 
+from Py_FCM.functions import Activation
+
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
-from evaluator.domain.provider_processor import Evaluator, Preprocessor
-from evaluator.domain.provider_processor import MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT
+from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT_LAMBDA_VALUE
 
 
 class DefaultEvaluator(Evaluator):
@@ -22,7 +22,7 @@ class DefaultEvaluator(Evaluator):
         """
         evaluated_skills = defaultdict(list)
         for skill in profile.skills:
-            evaluation = DefaultEvaluator.__normalized_evaluation(profile.provider_name, skill.value)
+            evaluation = DefaultEvaluator.__normalized_evaluation(skill.value)
             evaluated_skills[skill.name].append(evaluation)
         return DefaultEvaluator.__to_evaluated_skills(evaluated_skills)
 
@@ -35,17 +35,9 @@ class DefaultEvaluator(Evaluator):
         return evaluated_skill_list
 
     @staticmethod
-    def __normalized_evaluation(provider_name, value):
-        if provider_name == "GITHUB" or provider_name == "GITLAB":
-            relevance_indicator = value / MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT
-            values_between_one_and_minus_one_exclusive = DefaultEvaluator.__sigmoid_hiperbolic(relevance_indicator)
-        else:
-            values_between_one_and_minus_one_exclusive = DefaultEvaluator.__sigmoid_hiperbolic(value)
+    def __normalized_evaluation(value):
+        values_between_one_and_minus_one_exclusive = Activation.sigmoid_hip(value, lambda_val=DEFAULT_LAMBDA_VALUE)
         return values_between_one_and_minus_one_exclusive
-
-    @staticmethod
-    def __sigmoid_hiperbolic(val, lambda_val=0.1):
-        return (1.0 - exp(-1 * lambda_val * val)) / (1.0 + exp(-1 * lambda_val * val))
 
 
 class DefaultPreprocessor(Preprocessor):
