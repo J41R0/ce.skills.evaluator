@@ -1,11 +1,10 @@
-FROM python:3.7-alpine
+FROM civisanalytics/datascience-python
 
 COPY . /app
 
 WORKDIR /app
 
 RUN pip install setuptools gunicorn
-
 RUN python3 setup.py install
 
 ENV LC_ALL C.UTF-8
