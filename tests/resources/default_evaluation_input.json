@@ -1,6 +1,25 @@
 {
   "profiles": [
     {
+      "provider": "UNKNOWN",
+      "stats": {
+        "some_data": 32
+      },
+      "repositories": [],
+      "skills": [
+        {
+          "repositoryId": 0,
+          "name": "Flutter",
+          "value": 126.0
+        },
+        {
+          "repositoryId": 0,
+          "name": "RedHat",
+          "value": 624.0
+        }
+      ]
+    },
+    {
       "provider": "GITHUB",
       "stats": {},
       "repositories": [
