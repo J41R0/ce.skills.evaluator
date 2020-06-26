@@ -5,7 +5,7 @@ from Py_FCM import join_maps, functions
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
-from evaluator.domain.provider_processor import MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT, SRC_LAMBDA_VALUE
+from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE
 
 
 class GitHubEvaluator(Evaluator):
@@ -29,8 +29,7 @@ class GitHubEvaluator(Evaluator):
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
-                skill_value = ((skill.contribution_factor * skill.value) /
-                               MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT)
+                skill_value = skill.contribution_factor * skill.value
                 scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
