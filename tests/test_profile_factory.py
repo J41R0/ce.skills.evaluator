@@ -16,7 +16,7 @@ class ProfileFactoryTests(unittest.TestCase):
             def_input = file.read()
 
         def_input_dict = json.loads(def_input)
-        self.default_profile = def_input_dict['profiles'][0]
+        self.default_profile = def_input_dict['profiles'][1]
 
     def test_profile_generation(self):
         profile_obj = ProfileFactory.from_dict(self.default_profile)

@@ -18,54 +18,28 @@ class DefaultEvaluatorTests(unittest.TestCase):
 
         def_input_dict = json.loads(def_input)
         self.default_profile = ProfileFactory.from_dict(def_input_dict['profiles'][0])
-        self.scale_lower_bound = def_input_dict['scaleLowerBound']
-        self.scale_higher_bound = def_input_dict['scaleHigherBound']
 
     def test_evaluation_function_default(self):
         expected_result = {
-            "C++": 8.807970779778824,
-            "JAVA": 5.4983399731247795
+            "FLUTTER": 0.5580522155596243,
+            "REDHAT": 0.9961078780298288
         }
         evaluator = DefaultEvaluator()
-        skills_evaluated = evaluator.evaluate(self.default_profile,
-                                              self.scale_lower_bound,
-                                              self.scale_higher_bound)
-        self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
-        self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
-
-    def test_evaluation_function_scale_negative_difference(self):
-        expected_result = {
-            "C++": 0.5231883119115297,
-            "JAVA": -0.8006640107500882
-        }
-
-        scale_lower_bound = self.scale_lower_bound
-        scale_higher_bound = self.scale_higher_bound
-        self.scale_lower_bound = 3
-        self.scale_higher_bound = 1
-        evaluator = DefaultEvaluator()
-        skills_evaluated = evaluator.evaluate(self.default_profile,
-                                              self.scale_lower_bound,
-                                              self.scale_higher_bound)
-        self.scale_lower_bound = scale_lower_bound
-        self.scale_higher_bound = scale_higher_bound
-
+        skills_evaluated = evaluator.evaluate(self.default_profile)
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
 
     def test_evaluation_function_negative_skill_value(self):
         expected_result = {
-            "C++": 2.6894142136999513,
-            "JAVA": 2.6894142136999513
+            "FLUTTER": -0.5580522155596244,
+            "REDHAT": -0.9867466055006741
         }
 
         default_profile_skills = self.default_profile.skills.copy()
-        self.default_profile.skills[0].value = -500000
-        self.default_profile.skills[1].value = -500000
+        self.default_profile.skills[0].value = -126
+        self.default_profile.skills[1].value = -501
         evaluator = DefaultEvaluator()
-        skills_evaluated = evaluator.evaluate(self.default_profile,
-                                              self.scale_lower_bound,
-                                              self.scale_higher_bound)
+        skills_evaluated = evaluator.evaluate(self.default_profile)
         self.default_profile.skills = default_profile_skills
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
@@ -83,9 +57,7 @@ class GitHubEvaluatorTests(unittest.TestCase):
             def_input = file.read()
 
         def_input_dict = json.loads(def_input)
-        self.git_hub_profile = ProfileFactory.from_dict(def_input_dict['profiles'][0])
-        self.scale_lower_bound = def_input_dict['scaleLowerBound']
-        self.scale_higher_bound = def_input_dict['scaleHigherBound']
+        self.git_hub_profile = ProfileFactory.from_dict(def_input_dict['profiles'][1])
 
     def test_preprocess_fuction(self):
         preprocessor = GitHubPreprocessor()
@@ -96,9 +68,9 @@ class GitHubEvaluatorTests(unittest.TestCase):
         preprocessor = GitHubPreprocessor()
         preprocessor.preprocess(self.git_hub_profile)
         evaluator = GitHubEvaluator()
-        result = evaluator.evaluate(self.git_hub_profile, scale_lower_bound=0, scale_higher_bound=1)
+        result = evaluator.evaluate(self.git_hub_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.1, eval_sk.value)
+                self.assertEqual(0.9429962731995714, eval_sk.value)
             if eval_sk.name == "JAVA":
-                self.assertEqual(1.0, eval_sk.value)
+                self.assertEqual(0.9429962731995714, eval_sk.value)
