@@ -1,15 +1,27 @@
 [
-    {
-      "name": "C++",
-      "scores": {
-        "GITHUB": 8.807970779778824,
-        "GITLAB": 5.049998333399998
-      }
-    },
-    {
-      "name": "Java",
-      "scores": {
-        "GITHUB": 5.4983399731247795
-      }
+  {
+    "name": "FLUTTER",
+    "scores": {
+      "UNKNOWN": 7.790261077798122
     }
+  },
+  {
+    "name": "REDHAT",
+    "scores": {
+      "UNKNOWN": 9.980539390149143
+    }
+  },
+  {
+    "name": "C++",
+    "scores": {
+      "GITHUB": 9.714981365997858,
+      "GITLAB": 10.0
+    }
+  },
+  {
+    "name": "Java",
+    "scores": {
+      "GITHUB": 9.714981365997858
+    }
+  }
 ]
