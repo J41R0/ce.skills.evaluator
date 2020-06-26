@@ -11,9 +11,9 @@ class Profile:
         self.preprocessor = preprocessor
         self.evaluator = evaluator
 
-    def evaluate_skills(self, scale_lower_bound: 0, scale_higher_bound: 1) -> list:
+    def evaluate_skills(self) -> list:
         self.preprocessor.preprocess(self)
-        return self.evaluator.evaluate(self, scale_lower_bound, scale_higher_bound)
+        return self.evaluator.evaluate(self)
 
 
 class Repository:

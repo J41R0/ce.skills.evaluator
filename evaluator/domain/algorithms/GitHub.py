@@ -1,14 +1,15 @@
 from collections import defaultdict
 
-from Py_FCM import join_maps
+from Py_FCM import join_maps, functions
 
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
+from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE
 
 
 class GitHubEvaluator(Evaluator):
-    def evaluate(self, profile: Profile, scale_lower_bound: float, scale_higher_bound: float) -> list:
+    def evaluate(self, profile: Profile) -> list:
         """
         Evaluate a GitHub profile
         Args:
@@ -28,7 +29,9 @@ class GitHubEvaluator(Evaluator):
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
-                projects_fcm[-1].init_concept(skill.name, skill.contribution_factor, required_presence=False)
+                skill_value = skill.contribution_factor * skill.value
+                scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
+                projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
 
         final_fcm = join_maps(projects_fcm, ignore_zeros=True)

@@ -1,10 +1,16 @@
 from abc import ABC, abstractmethod
 
+from Py_FCM import functions
+
+MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT = 30000
+SRC_LAMBDA_VALUE = functions.Activation.sigmoid_hip_lambda(5 * MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT, 0.99)
+DEFAULT_LAMBDA_VALUE = 0.01
+
 
 class Evaluator(ABC):
 
     @abstractmethod
-    def evaluate(self, profile, scale_lower_bound: float, scale_higher_bound: float) -> list:
+    def evaluate(self, profile) -> list:
         pass
 
 

@@ -16,8 +16,8 @@ class EvaluationServiceTests(unittest.TestCase):
 
         def_input_dict = json.loads(def_input)
         self.default_profiles = def_input_dict['profiles']
-        self.scale_lower_bound = def_input_dict['scale_lower_bound']
-        self.scale_higher_bound = def_input_dict['scale_higher_bound']
+        self.scale_lower_bound = def_input_dict['scaleLowerBound']
+        self.scale_higher_bound = def_input_dict['scaleHigherBound']
 
     def test_evaluation_service_default(self):
         current_file_path = os.path.abspath(os.path.dirname(__file__))
