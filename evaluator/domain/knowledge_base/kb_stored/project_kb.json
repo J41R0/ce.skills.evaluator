@@ -8,11 +8,127 @@
   "result": "average",
   "concepts": [
     {
+      "id": "QMAKE",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "QML",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "SHELL",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "BASH",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "HASKELL",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "LUA",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "PERL",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "CLOJURE",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "ELIXIR",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "JULIA",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "GROOVY",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "ERLANG",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "CUDA",
+      "type": "SIMPLE"
+    },
+    {
       "id": "C++",
       "type": "SIMPLE"
     },
     {
+      "id": "C",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "RUST",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "OBJECTIVE-C",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "C#",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "DART",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "SWIFT",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "GO",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "RUBY",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "MATLAB",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "R",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "PYTHON",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "KOTLIN",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "SCALA",
+      "type": "SIMPLE"
+    },
+    {
       "id": "JAVA",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "TYPESCRIPT",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "COFFEESCRIPT",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "PHP",
       "type": "SIMPLE"
     },
     {
@@ -28,24 +144,200 @@
       "type": "SIMPLE"
     },
     {
-      "id": "FRONTEND",
+      "id": "DOTNET",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "NODE.JS",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "INTENSIVE_DATA_PROCESSING",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "INFRASTRUCTURE",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "WEB_FRONTEND",
       "type": "DECISION"
+    },
+    {
+      "id": "WEB_BACKEND",
+      "type": "DECISION"
+    },
+    {
+      "id": "SCRIPTING",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "QT-FRAMEWORK",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "NUMERICAL_ANALYSIS",
+      "type": "SIMPLE"
+    },
+    {
+      "id": "STATISTICS",
+      "type": "SIMPLE"
     }
   ],
   "relations": [
     {
+      "origin": "COFFEESCRIPT",
+      "destiny": "NODE.JS",
+      "weight": 1
+    },
+    {
+      "origin": "R",
+      "destiny": "STATISTICS",
+      "weight": 1
+    },
+    {
+      "origin": "PHP",
+      "destiny": "WEB_BACKEND",
+      "weight": 1
+    },
+    {
+      "origin": "RUBY",
+      "destiny": "WEB_BACKEND",
+      "weight": 0.62
+    },
+    {
+      "origin": "KOTLIN",
+      "destiny": "WEB_BACKEND",
+      "weight": 0.61
+    },
+    {
+      "origin": "JAVA",
+      "destiny": "WEB_BACKEND",
+      "weight": 0.57
+    },
+    {
+      "origin": "PYTHON",
+      "destiny": "WEB_BACKEND",
+      "weight": 0.32
+    },
+    {
+      "origin": "GO",
+      "destiny": "WEB_BACKEND",
+      "weight": 0.77
+    },
+    {
+      "origin": "C#",
+      "destiny": "DOTNET",
+      "weight": 0.71
+    },
+    {
+      "origin": "CUDA",
+      "destiny": "NUMERICAL_ANALYSIS",
+      "weight": 1
+    },
+    {
+      "origin": "MATLAB",
+      "destiny": "NUMERICAL_ANALYSIS",
+      "weight": 1
+    },
+    {
+      "origin": "R",
+      "destiny": "NUMERICAL_ANALYSIS",
+      "weight": 0.83
+    },
+    {
+      "origin": "PYTHON",
+      "destiny": "NUMERICAL_ANALYSIS",
+      "weight": 0.1
+    },
+    {
+      "origin": "JULIA",
+      "destiny": "NUMERICAL_ANALYSIS",
+      "weight": 0.5
+    },
+    {
+      "origin": "QML",
+      "destiny": "QT-FRAMEWORK",
+      "weight": 1
+    },
+    {
+      "origin": "QMAKE",
+      "destiny": "QT-FRAMEWORK",
+      "weight": 1
+    },
+    {
+      "origin": "CUDA",
+      "destiny": "INTENSIVE_DATA_PROCESSING",
+      "weight": 1
+    },
+    {
+      "origin": "ERLANG",
+      "destiny": "INTENSIVE_DATA_PROCESSING",
+      "weight": 0.68
+    },
+    {
+      "origin": "SCALA",
+      "destiny": "INTENSIVE_DATA_PROCESSING",
+      "weight": 0.42
+    },
+    {
+      "origin": "HASKELL",
+      "destiny": "INTENSIVE_DATA_PROCESSING",
+      "weight": 0.5
+    },
+    {
+      "origin": "PYTHON",
+      "destiny": "SCRIPTING",
+      "weight": 0.27
+    },
+    {
+      "origin": "LUA",
+      "destiny": "SCRIPTING",
+      "weight": 0.43
+    },
+    {
+      "origin": "SHELL",
+      "destiny": "SCRIPTING",
+      "weight": 1
+    },
+    {
+      "origin": "BASH",
+      "destiny": "SCRIPTING",
+      "weight": 1
+    },
+    {
+      "origin": "SHELL",
+      "destiny": "INFRASTRUCTURE",
+      "weight": 0.77
+    },
+    {
+      "origin": "BASH",
+      "destiny": "INFRASTRUCTURE",
+      "weight": 0.62
+    },
+    {
+      "origin": "COFFEESCRIPT",
+      "destiny": "WEB_FRONTEND",
+      "weight": 1
+    },
+    {
+      "origin": "TYPESCRIPT",
+      "destiny": "WEB_FRONTEND",
+      "weight": 1
+    },
+    {
       "origin": "JAVASCRIPT",
-      "destiny": "FRONTEND",
+      "destiny": "WEB_FRONTEND",
       "weight": 1
     },
     {
       "origin": "HTML",
-      "destiny": "FRONTEND",
+      "destiny": "WEB_FRONTEND",
       "weight": 0.25
     },
     {
       "origin": "CSS",
-      "destiny": "FRONTEND",
+      "destiny": "WEB_FRONTEND",
       "weight": 0.1
     }
   ]
