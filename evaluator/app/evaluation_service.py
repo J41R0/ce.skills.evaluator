@@ -10,8 +10,18 @@ class SkillsEvaluation:
         self.__scale_higher_bound = scale_higher_bound
 
     def __scale_value(self, value: float) -> float:
+        """
+        Scale evaluator result in input value to use only the [0,1] range of sigmoid hip function output
+        Args:
+            value: Evaluation result
+
+        Returns: Scaled evaluation result to desired range
+
+        """
         max_positive_scale = self.__scale_higher_bound + abs(self.__scale_lower_bound)
-        scaled_in_one_to_zero_range = (value + 1) / 2
+        scaled_in_one_to_zero_range = 0
+        if value > 0:
+            scaled_in_one_to_zero_range = value
         skill_evaluation_scaled = (scaled_in_one_to_zero_range * max_positive_scale) - abs(self.__scale_lower_bound)
         return skill_evaluation_scaled
 
