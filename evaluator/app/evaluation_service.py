@@ -18,11 +18,20 @@ class SkillsEvaluation:
         Returns: Scaled evaluation result to desired range
 
         """
-        max_positive_scale = self.__scale_higher_bound + abs(self.__scale_lower_bound)
         scaled_in_one_to_zero_range = 0
         if value > 0:
             scaled_in_one_to_zero_range = value
-        skill_evaluation_scaled = (scaled_in_one_to_zero_range * max_positive_scale) - abs(self.__scale_lower_bound)
+
+        values_range = self.__scale_higher_bound
+        if self.__scale_higher_bound <= 0 and self.__scale_lower_bound < 0:
+            values_range = abs(self.__scale_higher_bound - self.__scale_lower_bound)
+        elif self.__scale_higher_bound > 0 and self.__scale_lower_bound > 0:
+            values_range = self.__scale_higher_bound - self.__scale_lower_bound
+        elif self.__scale_lower_bound < 0 < self.__scale_higher_bound:
+            values_range = abs(self.__scale_higher_bound) + abs(self.__scale_lower_bound)
+
+        pseudo_scaled_value = scaled_in_one_to_zero_range * values_range
+        skill_evaluation_scaled = self.__scale_lower_bound + pseudo_scaled_value
         return skill_evaluation_scaled
 
     def add_skill_evaluation(self, skill_name, provider, evaluation: float):
