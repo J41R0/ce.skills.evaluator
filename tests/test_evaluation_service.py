@@ -51,3 +51,20 @@ class EvaluationServiceTests(unittest.TestCase):
                 element["scores"][provider] = element["scores"][provider] - 3
         for element in final_result:
             self.assertIn(element, expected_result)
+
+    def test_evaluation_service_negative_scale_range(self):
+        current_file_path = os.path.abspath(os.path.dirname(__file__))
+        default_evaluation_response_path = os.path.join(current_file_path, "resources/default_evaluation_response.json")
+        with open(default_evaluation_response_path, 'r') as file:
+            str_result = file.read()
+        expected_result = json.loads(str_result)
+        skills_evaluated = evaluate_skills(self.default_profiles, -10, 0)
+        func_result = skills_evaluated.get_skills_data()
+        final_result = []
+        for key in func_result:
+            final_result.append(func_result[key])
+        for element in expected_result:
+            for provider in element["scores"]:
+                element["scores"][provider] = element["scores"][provider] - 10
+        for element in final_result:
+            self.assertIn(element, expected_result)
