@@ -32,4 +32,5 @@ class EvaluationServiceTests(unittest.TestCase):
         final_result = []
         for key in func_result:
             final_result.append(func_result[key])
-        self.assertEqual(expected_result, final_result)
+        for element in final_result:
+            self.assertIn(element, expected_result)
