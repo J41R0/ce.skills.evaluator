@@ -23,7 +23,7 @@ class SkillsEvaluation:
             scaled_in_one_to_zero_range = value
 
         values_range = self.__scale_higher_bound
-        if self.__scale_higher_bound < 0 and self.__scale_lower_bound < 0:
+        if self.__scale_higher_bound <= 0 and self.__scale_lower_bound < 0:
             values_range = abs(self.__scale_higher_bound - self.__scale_lower_bound)
         elif self.__scale_higher_bound > 0 and self.__scale_lower_bound > 0:
             values_range = self.__scale_higher_bound - self.__scale_lower_bound
