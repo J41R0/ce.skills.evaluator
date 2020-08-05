@@ -164,7 +164,7 @@
       "type": "DECISION"
     },
     {
-      "id": "WEB_BACKEND",
+      "id": "BACKEND",
       "type": "DECISION"
     },
     {
@@ -197,32 +197,32 @@
     },
     {
       "origin": "PHP",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 1
     },
     {
       "origin": "RUBY",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 0.62
     },
     {
       "origin": "KOTLIN",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 0.61
     },
     {
       "origin": "JAVA",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 0.57
     },
     {
       "origin": "PYTHON",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 0.32
     },
     {
       "origin": "GO",
-      "destiny": "WEB_BACKEND",
+      "destiny": "BACKEND",
       "weight": 0.77
     },
     {
@@ -244,16 +244,6 @@
       "origin": "R",
       "destiny": "NUMERICAL_ANALYSIS",
       "weight": 0.83
-    },
-    {
-      "origin": "PYTHON",
-      "destiny": "NUMERICAL_ANALYSIS",
-      "weight": 0.1
-    },
-    {
-      "origin": "JULIA",
-      "destiny": "NUMERICAL_ANALYSIS",
-      "weight": 0.5
     },
     {
       "origin": "QML",

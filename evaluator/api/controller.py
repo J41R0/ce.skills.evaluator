@@ -112,13 +112,13 @@ class Evaluator(Resource):
                     {
                       "repositoryId": 1,
                       "name": "Java",
-                      "value": 100.0
+                      "value": 6544487.0
                     }
                   ]
                 }
           ],
-          "scaleLowerBound": -1,
-          "scaleHigherBound": 1
+          "scaleLowerBound": 1,
+          "scaleHigherBound": 10
         }
         """
         profiles_data = ProfilesDto()

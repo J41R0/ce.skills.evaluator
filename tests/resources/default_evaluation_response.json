@@ -15,19 +15,21 @@
     "name": "C++",
     "scores": {
       "GITHUB": 9.429962731995714,
-      "GITLAB": 10.0
+      "GITLAB": 9.429962731995714
     }
   },
   {
     "name": "JAVA",
     "scores": {
-      "GITHUB": 9.429962731995714
+      "GITHUB": 9.429962731995714,
+      "GITLAB": 9.429962731995714
     }
   },
   {
-    "name": "WEB_BACKEND",
+    "name": "BACKEND",
     "scores": {
-      "GITHUB": 2.6246499182754373
+      "GITHUB": 2.6246499182754373,
+      "GITLAB": 2.6246499182754373
     }
   }
 ]

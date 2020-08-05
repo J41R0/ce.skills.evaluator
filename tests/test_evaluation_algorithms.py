@@ -6,7 +6,8 @@ import unittest
 sys.path.append('../')
 from evaluator.app.factory import ProfileFactory
 from evaluator.domain.algorithms.default import DefaultEvaluator, DefaultPreprocessor
-from evaluator.domain.algorithms.GitHub import GitHubEvaluator, GitHubPreprocessor
+from evaluator.domain.algorithms.github import GitHubEvaluator, GitHubPreprocessor
+from evaluator.domain.algorithms.gitlab import GitLabEvaluator, GitLabPreprocessor
 
 
 class DefaultEvaluatorTests(unittest.TestCase):
@@ -57,18 +58,45 @@ class GitHubEvaluatorTests(unittest.TestCase):
             def_input = file.read()
 
         def_input_dict = json.loads(def_input)
-        self.git_hub_profile = ProfileFactory.from_dict(def_input_dict['profiles'][1])
+        self.github_profile = ProfileFactory.from_dict(def_input_dict['profiles'][1])
 
     def test_preprocess_fuction(self):
         preprocessor = GitHubPreprocessor()
-        preprocessor.preprocess(self.git_hub_profile)
-        self.assertEqual(0.1, self.git_hub_profile.skills[0].contribution_factor)
+        preprocessor.preprocess(self.github_profile)
+        self.assertEqual(0.1, self.github_profile.skills[0].contribution_factor)
 
     def test_evaluation_function(self):
         preprocessor = GitHubPreprocessor()
-        preprocessor.preprocess(self.git_hub_profile)
+        preprocessor.preprocess(self.github_profile)
         evaluator = GitHubEvaluator()
-        result = evaluator.evaluate(self.git_hub_profile)
+        result = evaluator.evaluate(self.github_profile)
+        for eval_sk in result:
+            if eval_sk.name == "C++":
+                self.assertEqual(0.9429962731995714, eval_sk.value)
+            if eval_sk.name == "JAVA":
+                self.assertEqual(0.9429962731995714, eval_sk.value)
+
+
+class GitLabEvaluatorTests(unittest.TestCase):
+    def setUp(self):
+        current_file_path = os.path.abspath(os.path.dirname(__file__))
+        default_evaluation_input_path = os.path.join(current_file_path, "resources/default_evaluation_input.json")
+        with open(default_evaluation_input_path, 'r') as file:
+            def_input = file.read()
+
+        def_input_dict = json.loads(def_input)
+        self.gitlab_profile = ProfileFactory.from_dict(def_input_dict['profiles'][1])
+
+    def test_preprocess_fuction(self):
+        preprocessor = GitLabPreprocessor()
+        preprocessor.preprocess(self.gitlab_profile)
+        self.assertEqual(0.1, self.gitlab_profile.skills[0].contribution_factor)
+
+    def test_evaluation_function(self):
+        preprocessor = GitLabPreprocessor()
+        preprocessor.preprocess(self.gitlab_profile)
+        evaluator = GitLabEvaluator()
+        result = evaluator.evaluate(self.gitlab_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
                 self.assertEqual(0.9429962731995714, eval_sk.value)
