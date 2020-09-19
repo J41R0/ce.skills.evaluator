@@ -24,12 +24,15 @@ class GitHubEvaluator(Evaluator):
 
         projects_fcm = []
         skills_relation = defaultdict(list)
+        total_project_bytes = defaultdict(int)
         for skill in profile.skills:
             skills_relation[skill.repository_id].append(skill)
+            total_project_bytes[skill.repository_id] += skill.value
+
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
-                skill_value = skill.contribution_factor * skill.value
+                skill_value = skill.contribution_factor * total_project_bytes[skill.repository_id]
                 scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
