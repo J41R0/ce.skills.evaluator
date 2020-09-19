@@ -11,7 +11,7 @@ from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE
 class GitLabEvaluator(Evaluator):
     def evaluate(self, profile: Profile) -> list:
         """
-        Evaluate a GitHub profile
+        Evaluate a GitLab profile
         Args:
             profile: Profile to evaluate
             scale_lower_bound: Minimum scale value
@@ -46,11 +46,11 @@ class GitLabPreprocessor(Preprocessor):
 
     def preprocess(self, profile: Profile) -> Profile:
         """
-        Preprocess a GitHub profile
+        Preprocess a GitLab profile
         Args:
             profile: Profile to preprocess
 
-        Returns: The same Profile object
+        Returns: The same Profile object updated
 
         """
         projects_contribution = {}
