@@ -22,7 +22,7 @@ setuptools.setup(
         'flask_jwt_extended >= 3.10.0',
         'coverage >= 5.1',
         'Cython >= 0.29.20',
-        'Py-FCM >= 0.2.21'
+        'py-fcm >= 0.2.25'
     ],
     python_requires='>=3.6',
     classifiers=[

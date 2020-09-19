@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from Py_FCM import join_maps, functions
+from py_fcm import join_maps, functions
 
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
@@ -35,6 +35,7 @@ class GitLabEvaluator(Evaluator):
             projects_fcm[-1].run_inference()
 
         final_fcm = join_maps(projects_fcm, ignore_zeros=True)
+        final_fcm.set_map_decision_function("EXITED")
         result = final_fcm.get_final_state(nodes_type='any')
         for skill_name in result:
             if result[skill_name] > 0:
