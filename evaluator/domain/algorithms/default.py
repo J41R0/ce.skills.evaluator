@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from Py_FCM.functions import Activation
+from py_fcm.functions import Activation
 
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT_LAMBDA_VALUE

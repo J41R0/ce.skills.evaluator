@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 
-from Py_FCM import functions
+from py_fcm import functions
 
 MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT = 30000
-SRC_LAMBDA_VALUE = functions.Activation.sigmoid_hip_lambda(5 * MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT, 0.99)
+SRC_LAMBDA_VALUE = functions.Activation.sigmoid_hip_lambda(7 * MINIMUM_BYTES_OF_CODE_TO_CONSIDER_RELEVANT_PROJECT, 0.99)
 DEFAULT_LAMBDA_VALUE = 0.01
+MEAN_OF_BYTES_BY_LINE_OF_CODE = 47
 
 
 class Evaluator(ABC):

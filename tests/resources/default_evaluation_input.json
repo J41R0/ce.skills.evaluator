@@ -74,8 +74,8 @@
           "views": 7,
           "totalCommits": 50,
           "userCommits": 15,
-          "userAdditions": 50,
-          "totalAdditions": 500
+          "userAdditions": 10000,
+          "totalAdditions": 100000
         },
         {
           "id": 1,

@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from Py_FCM import join_maps, functions
+from py_fcm import join_maps, functions
 
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
@@ -24,17 +24,21 @@ class GitHubEvaluator(Evaluator):
 
         projects_fcm = []
         skills_relation = defaultdict(list)
+        total_project_bytes = defaultdict(int)
         for skill in profile.skills:
             skills_relation[skill.repository_id].append(skill)
+            total_project_bytes[skill.repository_id] += skill.value
+
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
-                skill_value = skill.contribution_factor * skill.value
+                skill_value = skill.contribution_factor * total_project_bytes[skill.repository_id]
                 scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
 
         final_fcm = join_maps(projects_fcm, ignore_zeros=True)
+        final_fcm.set_map_decision_function("EXITED")
         result = final_fcm.get_final_state(nodes_type='any')
         for skill_name in result:
             if result[skill_name] > 0:

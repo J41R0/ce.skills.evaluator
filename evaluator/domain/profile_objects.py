@@ -34,9 +34,12 @@ class Repository:
 class Skill:
     def __init__(self, repository_id: int, name: str, value: int):
         self.repository_id = repository_id
-        self.name = name.upper()
+        self.name = self.__skill_name_preprocessor(name)
         self.value = value
         self.contribution_factor = 1
+
+    def __skill_name_preprocessor(self, skill_name: str) -> str:
+        return skill_name.upper()
 
 
 class EvaluatedSkill:
