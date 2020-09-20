@@ -5,7 +5,7 @@ from py_fcm import join_maps, functions
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
-from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE
+from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE, MEAN_OF_BYTES_BY_LINE_OF_CODE
 
 
 class GitLabEvaluator(Evaluator):
@@ -23,11 +23,19 @@ class GitLabEvaluator(Evaluator):
         evaluated_skill_list = []
 
         projects_fcm = []
-        skills_relation = defaultdict(list)
+
         total_project_bytes = defaultdict(int)
+
+        for repository in profile.repositories:
+            if repository.user_additions > 1:
+                total_project_bytes[repository.id] = repository.user_additions * MEAN_OF_BYTES_BY_LINE_OF_CODE
+
+        skills_relation = defaultdict(list)
+        defined_by_additions = set(total_project_bytes.keys())
         for skill in profile.skills:
             skills_relation[skill.repository_id].append(skill)
-            total_project_bytes[skill.repository_id] += skill.value
+            if skill.repository_id not in defined_by_additions:
+                total_project_bytes[skill.repository_id] += skill.value
 
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
