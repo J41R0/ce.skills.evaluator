@@ -3,7 +3,7 @@ from collections import defaultdict
 from py_fcm.functions import Activation
 
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
-from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT_LAMBDA_VALUE
+from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT_LAMBDA_VALUE, SRC_LAMBDA_VALUE
 
 
 class DefaultEvaluator(Evaluator):
@@ -14,15 +14,16 @@ class DefaultEvaluator(Evaluator):
         Other values do not break the process buy may return unexpected evaluation values
         Args:
             profile: Profile to evaluate
-            scale_lower_bound: Minimum scale value
-            scale_higher_bound: Maximum scale value
 
         Returns: List of EvaluatedSkill
 
         """
         evaluated_skills = defaultdict(list)
         for skill in profile.skills:
-            evaluation = DefaultEvaluator.__normalized_evaluation(skill.value)
+            if profile.provider_name == "GITHUB" or profile.provider_name == "GITLAB":
+                evaluation = Activation.sigmoid_hip(skill.value, SRC_LAMBDA_VALUE)
+            else:
+                evaluation = DefaultEvaluator.__normalized_evaluation(skill.value)
             evaluated_skills[skill.name].append(evaluation)
         return DefaultEvaluator.__to_evaluated_skills(evaluated_skills)
 

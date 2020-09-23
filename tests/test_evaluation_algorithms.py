@@ -49,6 +49,19 @@ class DefaultEvaluatorTests(unittest.TestCase):
         preprocessor = DefaultPreprocessor()
         self.assertEqual(self.default_profile, preprocessor.preprocess(self.default_profile))
 
+    def test_evaluation_function_git_based(self):
+        expected_result = {
+            "FLUTTER": 0.0007285323143711687,
+            "REDHAT": 0.003607954539766182
+        }
+        evaluator = DefaultEvaluator()
+        name_save = self.default_profile.provider_name
+        self.default_profile.provider_name = "GITHUB"
+        skills_evaluated = evaluator.evaluate(self.default_profile)
+        self.default_profile.provider_name = name_save
+        self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
+        self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
+
 
 class GitHubEvaluatorTests(unittest.TestCase):
     def setUp(self):

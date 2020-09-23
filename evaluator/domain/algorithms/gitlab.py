@@ -14,8 +14,6 @@ class GitLabEvaluator(Evaluator):
         Evaluate a GitLab profile
         Args:
             profile: Profile to evaluate
-            scale_lower_bound: Minimum scale value
-            scale_higher_bound: Maximum scale value
 
         Returns: List of EvaluatedSkill
 
@@ -67,7 +65,7 @@ class GitLabPreprocessor(Preprocessor):
         """
         projects_contribution = {}
         for repository in profile.repositories:
-            if repository.total_additions != 0:
+            if repository.total_additions != 0 and repository.user_additions != 0:
                 projects_contribution[repository.id] = repository.user_additions / repository.total_additions
             else:
                 projects_contribution[repository.id] = 1
