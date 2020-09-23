@@ -14,8 +14,6 @@ class GitHubEvaluator(Evaluator):
         Evaluate a GitHub profile
         Args:
             profile: Profile to evaluate
-            scale_lower_bound: Minimum scale value
-            scale_higher_bound: Maximum scale value
 
         Returns: List of EvaluatedSkill
 
