@@ -245,7 +245,7 @@ class Evaluator(Resource):
         evaluated_skills = evaluate_skills(profiles_data.profiles,
                                            profiles_data.scale_lower_bound,
                                            profiles_data.scale_higher_bound,
-                                           smart_evaluation=False)
+                                           custom_evaluation=False)
         skills_json = EvaluatedSkillsDto.build_json_from_skills(evaluated_skills)
         return skills_json, http.HTTPStatus.OK
 

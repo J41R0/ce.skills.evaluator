@@ -45,10 +45,10 @@ class SkillsEvaluation:
 
 
 def evaluate_skills(profiles: list, scale_lower_bound: float, scale_higher_bound: float,
-                    smart_evaluation=True) -> SkillsEvaluation:
+                    custom_evaluation=True) -> SkillsEvaluation:
     evaluations = SkillsEvaluation(scale_lower_bound, scale_higher_bound)
     for profile in profiles:
-        current_profile = ProfileFactory.from_dict(profile, smart_evaluation)
+        current_profile = ProfileFactory.from_dict(profile, custom_evaluation)
         evaluated_skills = current_profile.evaluate_skills()
         for skill in evaluated_skills:
             evaluations.add_skill_evaluation(skill.name, current_profile.provider_name, skill.value)

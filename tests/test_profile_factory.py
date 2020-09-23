@@ -64,21 +64,21 @@ class ProfileFactoryTests(unittest.TestCase):
         self.assertTrue(isinstance(profile_obj.evaluator, DefaultEvaluator))
 
     def test_non_smart_profile_generation(self):
-        profile_obj = ProfileFactory.from_dict(self.unknown_profile, smart_evaluation=False)
+        profile_obj = ProfileFactory.from_dict(self.unknown_profile, custom_evaluation=False)
 
         self.assertTrue(isinstance(profile_obj, Profile))
         self.assertEqual("UNKNOWN", profile_obj.provider_name)
         self.assertTrue(isinstance(profile_obj.preprocessor, DefaultPreprocessor))
         self.assertTrue(isinstance(profile_obj.evaluator, DefaultEvaluator))
 
-        profile_obj = ProfileFactory.from_dict(self.github_profile, smart_evaluation=False)
+        profile_obj = ProfileFactory.from_dict(self.github_profile, custom_evaluation=False)
 
         self.assertTrue(isinstance(profile_obj, Profile))
         self.assertEqual("GITHUB", profile_obj.provider_name)
         self.assertTrue(isinstance(profile_obj.preprocessor, DefaultPreprocessor))
         self.assertTrue(isinstance(profile_obj.evaluator, DefaultEvaluator))
 
-        profile_obj = ProfileFactory.from_dict(self.gitlab_profile, smart_evaluation=False)
+        profile_obj = ProfileFactory.from_dict(self.gitlab_profile, custom_evaluation=False)
 
         self.assertTrue(isinstance(profile_obj, Profile))
         self.assertEqual("GITLAB", profile_obj.provider_name)
