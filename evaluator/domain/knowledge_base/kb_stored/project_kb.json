@@ -153,11 +153,11 @@
     },
     {
       "id": "INTENSIVE_DATA_PROCESSING",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "INFRASTRUCTURE",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "WEB_FRONTEND",
@@ -169,11 +169,11 @@
     },
     {
       "id": "SCRIPTING",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "QT-FRAMEWORK",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "NUMERICAL_ANALYSIS",
