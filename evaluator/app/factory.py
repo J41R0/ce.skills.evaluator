@@ -8,18 +8,25 @@ from evaluator.domain.algorithms.gitlab import GitLabEvaluator, GitLabPreprocess
 
 class ProfileFactory:
     @staticmethod
-    def from_dict(profile: dict) -> Profile:
+    def from_dict(profile: dict, smart_evaluation=True) -> Profile:
         repositories = [ProfileFactory.__repository_from(repository) for repository in profile['repositories']]
         skills = [ProfileFactory.__skill_from(skill) for skill in profile['skills']]
         evaluators = ProfileFactory.__evaluators()
         preprocessors = ProfileFactory.__preprocessors()
-
-        generated_profile = Profile(profile['provider'],
-                                    profile['stats'],
-                                    repositories,
-                                    skills,
-                                    preprocessors[str(profile['provider']).upper()],
-                                    evaluators[str(profile['provider']).upper()])
+        if smart_evaluation:
+            generated_profile = Profile(profile['provider'],
+                                        profile['stats'],
+                                        repositories,
+                                        skills,
+                                        preprocessors[str(profile['provider']).upper()],
+                                        evaluators[str(profile['provider']).upper()])
+        else:
+            generated_profile = Profile(profile['provider'],
+                                        profile['stats'],
+                                        repositories,
+                                        skills,
+                                        DefaultPreprocessor(),
+                                        DefaultEvaluator())
         return generated_profile
 
     @staticmethod
