@@ -124,13 +124,14 @@ class Evaluator(Resource):
         profiles_data = ProfilesDto()
         evaluated_skills = evaluate_skills(profiles_data.profiles,
                                            profiles_data.scale_lower_bound,
-                                           profiles_data.scale_higher_bound)
+                                           profiles_data.scale_higher_bound,
+                                           profiles_data.infer_skills)
         skills_json = EvaluatedSkillsDto.build_json_from_skills(evaluated_skills)
         return skills_json, http.HTTPStatus.OK
 
 
 @api_namespace.route('naive_evaluate')
-class Evaluator(Resource):
+class NaiveEvaluator(Resource):
 
     @api_namespace.marshal_with(EvaluatedSkillsDto.skill_list)
     @api_namespace.expect(ProfilesDto.profile_list, validate=True)
