@@ -9,11 +9,12 @@ from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE
 
 
 class GitHubEvaluator(Evaluator):
-    def evaluate(self, profile: Profile) -> list:
+    def evaluate(self, profile: Profile, infer_skills=True) -> list:
         """
         Evaluate a GitHub profile
         Args:
             profile: Profile to evaluate
+            infer_skills: Infer skills if possible
 
         Returns: List of EvaluatedSkill
 
@@ -37,7 +38,10 @@ class GitHubEvaluator(Evaluator):
 
         final_fcm = join_maps(projects_fcm, ignore_zeros=True)
         final_fcm.set_map_decision_function("EXITED")
-        result = final_fcm.get_final_state(nodes_type='any')
+        if infer_skills:
+            result = final_fcm.get_final_state(nodes_type='any')
+        else:
+            result = final_fcm.get_final_state(nodes_type="target")
         for skill_name in result:
             if result[skill_name] > 0:
                 evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))

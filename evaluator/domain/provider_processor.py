@@ -11,7 +11,7 @@ MEAN_OF_BYTES_BY_LINE_OF_CODE = 47
 class Evaluator(ABC):
 
     @abstractmethod
-    def evaluate(self, profile) -> list:
+    def evaluate(self, profile, infer_skills) -> list:
         pass
 
 

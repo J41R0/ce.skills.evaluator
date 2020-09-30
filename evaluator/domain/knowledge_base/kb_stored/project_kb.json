@@ -9,171 +9,171 @@
   "concepts": [
     {
       "id": "QMAKE",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "QML",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "SHELL",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "BASH",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "HASKELL",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "LUA",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "PERL",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "CLOJURE",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "ELIXIR",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "JULIA",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "GROOVY",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "ERLANG",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "CUDA",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "C++",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "C",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "RUST",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "OBJECTIVE-C",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "C#",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "DART",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "SWIFT",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "GO",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "RUBY",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "MATLAB",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "R",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "PYTHON",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "KOTLIN",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "SCALA",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "JAVA",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "TYPESCRIPT",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "COFFEESCRIPT",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "PHP",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "JAVASCRIPT",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "HTML",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "CSS",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "DOTNET",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "NODE.JS",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "INTENSIVE_DATA_PROCESSING",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "INFRASTRUCTURE",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "WEB_FRONTEND",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "BACKEND",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "SCRIPTING",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "QT-FRAMEWORK",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "NUMERICAL_ANALYSIS",
