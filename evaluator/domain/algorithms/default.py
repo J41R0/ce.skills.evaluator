@@ -8,12 +8,13 @@ from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT
 
 class DefaultEvaluator(Evaluator):
 
-    def evaluate(self, profile: Profile) -> list:
+    def evaluate(self, profile: Profile, infer_skills=False) -> list:
         """
         Evaluate a profile assuming that scale_lower_bound < scale_higher_bound and scale_higher_bound > 0.
         Other values do not break the process buy may return unexpected evaluation values
         Args:
             profile: Profile to evaluate
+            infer_skills: Infer skills if possible, not used in this evaluator
 
         Returns: List of EvaluatedSkill
 

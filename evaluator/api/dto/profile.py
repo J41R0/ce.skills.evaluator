@@ -38,7 +38,8 @@ class ProfilesDto:
         'profiles': fields.List(fields.Nested(profile), required=True,
                                 description='list of profiles'),
         'scaleLowerBound': fields.Integer(required=False, description='output minimum value', default=-1),
-        'scaleHigherBound': fields.Integer(required=False, description='output maximum value', default=1)
+        'scaleHigherBound': fields.Integer(required=False, description='output maximum value', default=1),
+        'skillsInference': fields.Boolean(required=False, description='infer skills if is possible', default=False)
     })
 
     def __init__(self):
@@ -46,3 +47,4 @@ class ProfilesDto:
         self.profiles = input_data['profiles']
         self.scale_lower_bound = input_data['scaleLowerBound']
         self.scale_higher_bound = input_data['scaleHigherBound']
+        self.infer_skills = input_data['skillsInference']
