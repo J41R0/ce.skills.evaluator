@@ -51,8 +51,8 @@ class DefaultEvaluatorTests(unittest.TestCase):
 
     def test_evaluation_function_git_based(self):
         expected_result = {
-            "FLUTTER": 0.0007285323143711687,
-            "REDHAT": 0.003607954539766182
+            "FLUTTER": 0.0009704057481774696,
+            "REDHAT": 0.004805783453958215
         }
         evaluator = DefaultEvaluator()
         name_save = self.default_profile.provider_name
@@ -85,9 +85,9 @@ class GitHubEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(self.github_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.5213561777638938, eval_sk.value)
+                self.assertEqual(0.6470245324800256, eval_sk.value)
             if eval_sk.name == "JAVA":
-                self.assertEqual(0.5213561777638938, eval_sk.value)
+                self.assertEqual(0.6470245324800256, eval_sk.value)
 
 
 class GitLabEvaluatorTests(unittest.TestCase):
@@ -112,6 +112,6 @@ class GitLabEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(self.gitlab_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.019270958977061974, eval_sk.value)
+                self.assertEqual(0.030796799479009186, eval_sk.value)
             if eval_sk.name == "JAVA":
-                self.assertEqual(0.019270958977061974, eval_sk.value)
+                self.assertEqual(0.030796799479009186, eval_sk.value)
