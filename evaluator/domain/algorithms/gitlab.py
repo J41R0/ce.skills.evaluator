@@ -5,7 +5,7 @@ from py_fcm import join_maps, functions
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
 from evaluator.domain.provider_processor import Evaluator, Preprocessor
-from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE, MEAN_OF_BYTES_BY_LINE_OF_CODE
+from evaluator.domain.provider_processor import SRC_LAMBDA_VALUE, GITLAB_BYTES_DIFFERENCE_RATIO
 
 
 class GitLabEvaluator(Evaluator):
@@ -25,21 +25,16 @@ class GitLabEvaluator(Evaluator):
 
         total_project_bytes = defaultdict(int)
 
-        for repository in profile.repositories:
-            if repository.user_additions > 1:
-                total_project_bytes[repository.id] = repository.user_additions * MEAN_OF_BYTES_BY_LINE_OF_CODE
-
         skills_relation = defaultdict(list)
-        defined_by_additions = set(total_project_bytes.keys())
         for skill in profile.skills:
             skills_relation[skill.repository_id].append(skill)
-            if skill.repository_id not in defined_by_additions:
-                total_project_bytes[skill.repository_id] += skill.value
+            total_project_bytes[skill.repository_id] += skill.value
 
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
                 skill_value = skill.contribution_factor * total_project_bytes[skill.repository_id]
+                skill_value = skill_value/GITLAB_BYTES_DIFFERENCE_RATIO
                 scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
