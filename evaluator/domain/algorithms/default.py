@@ -3,7 +3,13 @@ from collections import defaultdict
 from py_fcm.functions import Activation
 
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
-from evaluator.domain.provider_processor import Evaluator, Preprocessor, DEFAULT_LAMBDA_VALUE, SRC_LAMBDA_VALUE
+from evaluator.domain.provider_processor import (
+    Evaluator,
+    Preprocessor,
+    DEFAULT_LAMBDA_VALUE,
+    SRC_LAMBDA_VALUE,
+    GITLAB_BYTES_DIFFERENCE_RATIO
+)
 
 
 class DefaultEvaluator(Evaluator):
@@ -21,8 +27,10 @@ class DefaultEvaluator(Evaluator):
         """
         evaluated_skills = defaultdict(list)
         for skill in profile.skills:
-            if profile.provider_name == "GITHUB" or profile.provider_name == "GITLAB":
+            if profile.provider_name == "GITHUB":
                 evaluation = Activation.sigmoid_hip(skill.value, SRC_LAMBDA_VALUE)
+            elif profile.provider_name == "GITLAB":
+                evaluation = Activation.sigmoid_hip(skill.value / GITLAB_BYTES_DIFFERENCE_RATIO, SRC_LAMBDA_VALUE)
             else:
                 evaluation = DefaultEvaluator.__normalized_evaluation(skill.value)
             evaluated_skills[skill.name].append(evaluation)
