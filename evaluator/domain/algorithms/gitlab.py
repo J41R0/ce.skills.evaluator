@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from py_fcm import join_maps, functions
+from py_fcm import TYPE_SIMPLE, join_maps, functions
 
 from evaluator.domain import knowledge_base
 from evaluator.domain.profile_objects import Profile, EvaluatedSkill
@@ -33,18 +33,18 @@ class GitLabEvaluator(Evaluator):
         for repo_id in skills_relation:
             projects_fcm.append(knowledge_base.load_providers_fcm())
             for skill in skills_relation[repo_id]:
+                projects_fcm[-1].add_concept(skill.name)
                 skill_value = skill.contribution_factor * total_project_bytes[skill.repository_id]
-                skill_value = skill_value/GITLAB_BYTES_DIFFERENCE_RATIO
+                skill_value = skill_value / GITLAB_BYTES_DIFFERENCE_RATIO
                 scaled_skill_value = functions.Activation.sigmoid_hip(skill_value, SRC_LAMBDA_VALUE)
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
 
-        final_fcm = join_maps(projects_fcm, ignore_zeros=True)
-        final_fcm.set_map_decision_function("EXITED")
+        final_fcm = join_maps(projects_fcm, ignore_zeros=True, value_strategy='highest')
         if infer_skills:
-            result = final_fcm.get_final_state(nodes_type='any')
+            result = final_fcm.get_final_state(concepts_type='any')
         else:
-            result = final_fcm.get_final_state(nodes_type="target")
+            result = final_fcm.get_final_state(concepts_type=TYPE_SIMPLE)
         for skill_name in result:
             if result[skill_name] > 0:
                 evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))

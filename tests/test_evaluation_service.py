@@ -35,6 +35,29 @@ class EvaluationServiceTests(unittest.TestCase):
         for element in final_result:
             self.assertIn(element, expected_result)
 
+    def test_evaluation_service_without_inference(self):
+        current_file_path = os.path.abspath(os.path.dirname(__file__))
+        default_evaluation_response_path = os.path.join(current_file_path, "resources/default_evaluation_response.json")
+        with open(default_evaluation_response_path, 'r') as file:
+            str_result = file.read()
+        expected_result = json.loads(str_result)
+        fort_pos = None
+        for element_pos in range(len(expected_result)):
+            if expected_result[element_pos]['name'] == 'BACKEND':
+                fort_pos = element_pos
+        if fort_pos is not None:
+            del expected_result[fort_pos]
+        skills_evaluated = evaluate_skills(self.default_profiles,
+                                           self.scale_lower_bound,
+                                           self.scale_higher_bound,
+                                           infer_skills=False)
+        func_result = skills_evaluated.get_skills_data()
+        final_result = []
+        for key in func_result:
+            final_result.append(func_result[key])
+        for element in final_result:
+            self.assertIn(element, expected_result)
+
     def test_evaluation_service_negative_to_positive_scale_range(self):
         current_file_path = os.path.abspath(os.path.dirname(__file__))
         default_evaluation_response_path = os.path.join(current_file_path, "resources/default_evaluation_response.json")

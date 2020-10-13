@@ -1,187 +1,184 @@
 {
-  "iter": 500,
+  "max_iter": 500,
   "activation_function": "sigmoid_hip",
-  "actv_func_params": {
-    "lambda_val": 1
-  },
   "memory_influence": false,
-  "result": "average",
+  "decision_function": "EXITED",
   "concepts": [
     {
       "id": "QMAKE",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "QML",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "SHELL",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "BASH",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "HASKELL",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "LUA",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "PERL",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "CLOJURE",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "ELIXIR",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "JULIA",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "GROOVY",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "ERLANG",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "CUDA",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "C++",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "C",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "RUST",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "OBJECTIVE-C",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "C#",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "DART",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "SWIFT",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "GO",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "RUBY",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "MATLAB",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "R",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "PYTHON",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "KOTLIN",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "SCALA",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "JAVA",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "TYPESCRIPT",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "COFFEESCRIPT",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "PHP",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "JAVASCRIPT",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "HTML",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "CSS",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "DOTNET",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "NODE.JS",
-      "type": "DECISION"
+      "type": "SIMPLE"
     },
     {
       "id": "INTENSIVE_DATA_PROCESSING",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "INFRASTRUCTURE",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "WEB_FRONTEND",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "BACKEND",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "SCRIPTING",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "QT-FRAMEWORK",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "NUMERICAL_ANALYSIS",
-      "type": "SIMPLE"
+      "type": "DECISION"
     },
     {
       "id": "STATISTICS",
-      "type": "SIMPLE"
+      "type": "DECISION"
     }
   ],
   "relations": [
