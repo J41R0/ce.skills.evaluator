@@ -37,14 +37,15 @@ class GitHubEvaluator(Evaluator):
                 projects_fcm[-1].init_concept(skill.name, scaled_skill_value, required_presence=False)
             projects_fcm[-1].run_inference()
 
-        final_fcm = join_maps(projects_fcm, ignore_zeros=True, value_strategy='highest')
-        if infer_skills:
-            result = final_fcm.get_final_state(concepts_type='any')
-        else:
-            result = final_fcm.get_final_state(concepts_type=TYPE_SIMPLE)
-        for skill_name in result:
-            if result[skill_name] > 0:
-                evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))
+        if len(projects_fcm) > 0:
+            final_fcm = join_maps(projects_fcm, ignore_zeros=True, value_strategy='highest')
+            if infer_skills:
+                result = final_fcm.get_final_state(concepts_type='any')
+            else:
+                result = final_fcm.get_final_state(concepts_type=TYPE_SIMPLE)
+            for skill_name in result:
+                if result[skill_name] > 0:
+                    evaluated_skill_list.append(EvaluatedSkill(skill_name, result[skill_name]))
         return evaluated_skill_list
 
 
@@ -71,7 +72,10 @@ class GitHubPreprocessor(Preprocessor):
             total_project_bytes[skill.repository_id] += skill.value
 
         for skill in profile.skills:
-            skill.contribution_factor = ((skill.value * projects_contribution[skill.repository_id]) /
-                                         total_project_bytes[skill.repository_id])
+            if total_project_bytes[skill.repository_id] > 0:
+                skill.contribution_factor = ((skill.value * projects_contribution[skill.repository_id]) /
+                                             total_project_bytes[skill.repository_id])
+            else:
+                skill.contribution_factor = 1
 
         return profile
