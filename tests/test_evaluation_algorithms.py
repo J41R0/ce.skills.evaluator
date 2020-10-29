@@ -17,51 +17,72 @@ class DefaultEvaluatorTests(unittest.TestCase):
         with open(default_evaluation_input_path, 'r') as file:
             def_input = file.read()
 
-        def_input_dict = json.loads(def_input)
-        self.default_profile = ProfileFactory.from_dict(def_input_dict['profiles'][0])
+        self.def_input_dict = json.loads(def_input)
 
     def test_evaluation_function_default(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
         expected_result = {
             "FLUTTER": 0.5580522155596243,
             "REDHAT": 0.9961078780298288
         }
         evaluator = DefaultEvaluator()
-        skills_evaluated = evaluator.evaluate(self.default_profile)
+        skills_evaluated = evaluator.evaluate(default_profile)
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
 
     def test_evaluation_function_negative_skill_value(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
         expected_result = {
             "FLUTTER": -0.5580522155596244,
             "REDHAT": -0.9867466055006741
         }
 
-        default_profile_skills = self.default_profile.skills.copy()
-        self.default_profile.skills[0].value = -126
-        self.default_profile.skills[1].value = -501
+        default_profile_skills = default_profile.skills.copy()
+        default_profile.skills[0].value = -126
+        default_profile.skills[1].value = -501
         evaluator = DefaultEvaluator()
-        skills_evaluated = evaluator.evaluate(self.default_profile)
-        self.default_profile.skills = default_profile_skills
+        skills_evaluated = evaluator.evaluate(default_profile)
+        default_profile.skills = default_profile_skills
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
 
     def test_default_preprocessor(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
         preprocessor = DefaultPreprocessor()
-        self.assertEqual(self.default_profile, preprocessor.preprocess(self.default_profile))
+        self.assertEqual(default_profile, preprocessor.preprocess(default_profile))
 
     def test_evaluation_function_git_based(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
         expected_result = {
             "FLUTTER": 0.0009704057481774696,
             "REDHAT": 0.004805783453958215
         }
         evaluator = DefaultEvaluator()
-        name_save = self.default_profile.provider_name
-        self.default_profile.provider_name = "GITHUB"
-        skills_evaluated = evaluator.evaluate(self.default_profile)
-        self.default_profile.provider_name = name_save
+        name_save = default_profile.provider_name
+        default_profile.provider_name = "GITHUB"
+        skills_evaluated = evaluator.evaluate(default_profile)
+        default_profile.provider_name = name_save
         self.assertEqual(expected_result[skills_evaluated[0].name], skills_evaluated[0].value)
         self.assertEqual(expected_result[skills_evaluated[1].name], skills_evaluated[1].value)
 
+    def test_evaluation_function_zero_skills_value(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
+        preprocessor = DefaultPreprocessor()
+        for skill in default_profile.skills:
+            skill.value = 0
+        preprocessor.preprocess(default_profile)
+        evaluator = DefaultEvaluator()
+        result = evaluator.evaluate(default_profile)
+        self.assertEqual(0, len(result))
+
+    def test_evaluation_function_empty_skills(self):
+        default_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][0])
+        preprocessor = DefaultPreprocessor()
+        default_profile.skills = []
+        preprocessor.preprocess(default_profile)
+        evaluator = DefaultEvaluator()
+        result = evaluator.evaluate(default_profile)
+        self.assertEqual(0, len(result))
 
 class GitHubEvaluatorTests(unittest.TestCase):
     def setUp(self):
@@ -70,24 +91,44 @@ class GitHubEvaluatorTests(unittest.TestCase):
         with open(default_evaluation_input_path, 'r') as file:
             def_input = file.read()
 
-        def_input_dict = json.loads(def_input)
-        self.github_profile = ProfileFactory.from_dict(def_input_dict['profiles'][1])
+        self.def_input_dict = json.loads(def_input)
 
     def test_preprocess_fuction(self):
+        github_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][1])
         preprocessor = GitHubPreprocessor()
-        preprocessor.preprocess(self.github_profile)
-        self.assertEqual(0.1, self.github_profile.skills[0].contribution_factor)
+        preprocessor.preprocess(github_profile)
+        self.assertEqual(0.1, github_profile.skills[0].contribution_factor)
 
     def test_evaluation_function(self):
+        github_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][1])
         preprocessor = GitHubPreprocessor()
-        preprocessor.preprocess(self.github_profile)
+        preprocessor.preprocess(github_profile)
         evaluator = GitHubEvaluator()
-        result = evaluator.evaluate(self.github_profile)
+        result = evaluator.evaluate(github_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
                 self.assertEqual(0.6470245324800256, eval_sk.value)
             if eval_sk.name == "JAVA":
                 self.assertEqual(0.6470245324800256, eval_sk.value)
+
+    def test_evaluation_function_zero_skills_value(self):
+        github_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][1])
+        preprocessor = GitHubPreprocessor()
+        for skill in github_profile.skills:
+            skill.value = 0
+        preprocessor.preprocess(github_profile)
+        evaluator = GitHubEvaluator()
+        result = evaluator.evaluate(github_profile)
+        self.assertEqual(0, len(result))
+
+    def test_evaluation_function_empty_skills(self):
+        github_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][1])
+        preprocessor = GitHubPreprocessor()
+        github_profile.skills = []
+        preprocessor.preprocess(github_profile)
+        evaluator = GitHubEvaluator()
+        result = evaluator.evaluate(github_profile)
+        self.assertEqual(0, len(result))
 
 
 class GitLabEvaluatorTests(unittest.TestCase):
@@ -97,21 +138,41 @@ class GitLabEvaluatorTests(unittest.TestCase):
         with open(default_evaluation_input_path, 'r') as file:
             def_input = file.read()
 
-        def_input_dict = json.loads(def_input)
-        self.gitlab_profile = ProfileFactory.from_dict(def_input_dict['profiles'][2])
+        self.def_input_dict = json.loads(def_input)
 
     def test_preprocess_fuction(self):
+        gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
         preprocessor = GitLabPreprocessor()
-        preprocessor.preprocess(self.gitlab_profile)
-        self.assertEqual(0.1, self.gitlab_profile.skills[0].contribution_factor)
+        preprocessor.preprocess(gitlab_profile)
+        self.assertEqual(0.1, gitlab_profile.skills[0].contribution_factor)
 
     def test_evaluation_function(self):
+        gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
         preprocessor = GitLabPreprocessor()
-        preprocessor.preprocess(self.gitlab_profile)
+        preprocessor.preprocess(gitlab_profile)
         evaluator = GitLabEvaluator()
-        result = evaluator.evaluate(self.gitlab_profile)
+        result = evaluator.evaluate(gitlab_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
                 self.assertEqual(0.030796799479009186, eval_sk.value)
             if eval_sk.name == "JAVA":
                 self.assertEqual(0.030796799479009186, eval_sk.value)
+
+    def test_evaluation_function_zero_skills_value(self):
+        gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
+        preprocessor = GitLabPreprocessor()
+        for skill in gitlab_profile.skills:
+            skill.value = 0
+        preprocessor.preprocess(gitlab_profile)
+        evaluator = GitLabEvaluator()
+        result = evaluator.evaluate(gitlab_profile)
+        self.assertEqual(0, len(result))
+
+    def test_evaluation_function_empty_skills(self):
+        gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
+        preprocessor = GitLabPreprocessor()
+        gitlab_profile.skills = []
+        preprocessor.preprocess(gitlab_profile)
+        evaluator = GitLabEvaluator()
+        result = evaluator.evaluate(gitlab_profile)
+        self.assertEqual(0, len(result))
