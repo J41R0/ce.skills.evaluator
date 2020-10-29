@@ -33,7 +33,8 @@ class DefaultEvaluator(Evaluator):
                 evaluation = Activation.sigmoid_hip(skill.value / GITLAB_BYTES_DIFFERENCE_RATIO, SRC_LAMBDA_VALUE)
             else:
                 evaluation = DefaultEvaluator.__normalized_evaluation(skill.value)
-            evaluated_skills[skill.name].append(evaluation)
+            if skill.value != 0:
+                evaluated_skills[skill.name].append(evaluation)
         return DefaultEvaluator.__to_evaluated_skills(evaluated_skills)
 
     @staticmethod
