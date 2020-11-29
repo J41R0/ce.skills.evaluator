@@ -4,6 +4,7 @@ from evaluator.domain.profile_objects import Profile, Repository, Skill
 from evaluator.domain.algorithms.default import DefaultEvaluator, DefaultPreprocessor
 from evaluator.domain.algorithms.github import GitHubEvaluator, GitHubPreprocessor
 from evaluator.domain.algorithms.gitlab import GitLabEvaluator, GitLabPreprocessor
+from evaluator.domain.algorithms.stackexchange import StackExchangeEvaluator, StackExchangePreprocessor
 
 
 class ProfileFactory:
@@ -45,6 +46,7 @@ class ProfileFactory:
         evaluators = defaultdict(DefaultEvaluator)
         evaluators["GITHUB"] = GitHubEvaluator()
         evaluators["GITLAB"] = GitLabEvaluator()
+        evaluators["STACK_EXCHANGE"] = StackExchangeEvaluator()
         return evaluators
 
     @staticmethod
@@ -52,4 +54,5 @@ class ProfileFactory:
         preprocessors = defaultdict(DefaultPreprocessor)
         preprocessors["GITHUB"] = GitHubPreprocessor()
         preprocessors["GITLAB"] = GitLabPreprocessor()
+        preprocessors["STACK_EXCHANGE"] = StackExchangePreprocessor()
         return preprocessors
