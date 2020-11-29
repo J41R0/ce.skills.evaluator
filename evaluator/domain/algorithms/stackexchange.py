@@ -21,7 +21,7 @@ class StackExchangeEvaluator(Evaluator):
 
         """
         evaluated_skill_list = []
-        profile_reputation = profile.stats['reputation']
+        profile_reputation = int(profile.stats['reputation'])
         reputation_contribution = functions.Activation.sigmoid_hip(profile_reputation, STACK_EXC_REPUTATION_LAMBDA)
         fcm_evaluator = knowledge_base.load_providers_fcm()
         for skill in profile.skills:
