@@ -107,6 +107,40 @@
           "value": 500000
         }
       ]
+    },
+    {
+      "provider": "STACK_EXCHANGE",
+      "stats": {
+        "reputation": "100"
+      },
+      "repositories": [],
+      "skills": [
+        {
+          "repositoryId": 0,
+          "name": "dependency-injection",
+          "value": 100.0
+        },
+        {
+          "repositoryId": 0,
+          "name": "ejb",
+          "value": 115.0
+        },
+        {
+          "repositoryId": 0,
+          "name": "inversion-of-control",
+          "value": 1.0
+        },
+        {
+          "repositoryId": 0,
+          "name": "java",
+          "value": 78.0
+        },
+        {
+          "repositoryId": 0,
+          "name": "spring",
+          "value": 20.0
+        }
+      ]
     }
   ],
   "scaleLowerBound": 0,

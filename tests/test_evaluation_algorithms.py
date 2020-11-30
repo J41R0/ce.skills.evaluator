@@ -8,6 +8,7 @@ from evaluator.app.factory import ProfileFactory
 from evaluator.domain.algorithms.default import DefaultEvaluator, DefaultPreprocessor
 from evaluator.domain.algorithms.github import GitHubEvaluator, GitHubPreprocessor
 from evaluator.domain.algorithms.gitlab import GitLabEvaluator, GitLabPreprocessor
+from evaluator.domain.algorithms.stackexchange import StackExchangeEvaluator, StackExchangePreprocessor
 
 
 class DefaultEvaluatorTests(unittest.TestCase):
@@ -83,6 +84,7 @@ class DefaultEvaluatorTests(unittest.TestCase):
         evaluator = DefaultEvaluator()
         result = evaluator.evaluate(default_profile)
         self.assertEqual(0, len(result))
+
 
 class GitHubEvaluatorTests(unittest.TestCase):
     def setUp(self):
@@ -175,4 +177,57 @@ class GitLabEvaluatorTests(unittest.TestCase):
         preprocessor.preprocess(gitlab_profile)
         evaluator = GitLabEvaluator()
         result = evaluator.evaluate(gitlab_profile)
+        self.assertEqual(0, len(result))
+
+
+class StackExchangeEvaluatorTests(unittest.TestCase):
+    def setUp(self):
+        current_file_path = os.path.abspath(os.path.dirname(__file__))
+        default_evaluation_input_path = os.path.join(current_file_path, "resources/default_evaluation_input.json")
+        with open(default_evaluation_input_path, 'r') as file:
+            def_input = file.read()
+
+        self.def_input_dict = json.loads(def_input)
+
+    def test_preprocess_fuction(self):
+        stack_exchange_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][3])
+        preprocessor = StackExchangePreprocessor()
+        preprocessor.preprocess(stack_exchange_profile)
+        self.assertEqual(0.29710501384080074, stack_exchange_profile.skills[0].value)
+
+    def test_evaluation_function(self):
+        stack_exchange_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][3])
+        preprocessor = StackExchangePreprocessor()
+        preprocessor.preprocess(stack_exchange_profile)
+        evaluator = StackExchangeEvaluator()
+        result = evaluator.evaluate(stack_exchange_profile)
+        for eval_sk in result:
+            if eval_sk.name == "JAVA":
+                self.assertEqual(0.24215496714015378, eval_sk.value)
+            if eval_sk.name == "DEPENDENCY-INJECTION":
+                self.assertEqual(0.30475980581088286, eval_sk.value)
+            if eval_sk.name == "EJB":
+                self.assertEqual(0.34606189253643604, eval_sk.value)
+            if eval_sk.name == "INVERSION-OF-CONTROL":
+                self.assertEqual(0.010718195620673304, eval_sk.value)
+            if eval_sk.name == "SPRING":
+                self.assertEqual(0.06884650863233735, eval_sk.value)
+
+    def test_evaluation_function_zero_skills_value(self):
+        stack_exchange_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][3])
+        preprocessor = StackExchangePreprocessor()
+        for skill in stack_exchange_profile.skills:
+            skill.value = 0
+        preprocessor.preprocess(stack_exchange_profile)
+        evaluator = StackExchangeEvaluator()
+        result = evaluator.evaluate(stack_exchange_profile)
+        self.assertEqual(0, len(result))
+
+    def test_evaluation_function_empty_skills(self):
+        stack_exchange_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][3])
+        preprocessor = StackExchangePreprocessor()
+        stack_exchange_profile.skills = []
+        preprocessor.preprocess(stack_exchange_profile)
+        evaluator = StackExchangeEvaluator()
+        result = evaluator.evaluate(stack_exchange_profile)
         self.assertEqual(0, len(result))

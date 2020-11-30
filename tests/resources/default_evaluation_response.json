@@ -1,41 +1,67 @@
 [
   {
-    "name": "FLUTTER",
     "scores": {
       "UNKNOWN": 5.580522155596243
-    }
+    },
+    "name": "FLUTTER"
   },
   {
-    "name": "REDHAT",
     "scores": {
       "UNKNOWN": 9.961078780298289
-    }
+    },
+    "name": "REDHAT"
   },
   {
-    "name": "C++",
     "scores": {
       "GITHUB": 6.470245324800255,
       "GITLAB": 0.30796799479009185
-    }
+    },
+    "name": "C++"
   },
   {
-    "name": "JAVA",
     "scores": {
       "GITHUB": 6.470245324800255,
-      "GITLAB": 0.30796799479009185
-    }
+      "GITLAB": 0.30796799479009185,
+      "STACK_EXCHANGE": 2.4215496714015377
+    },
+    "name": "JAVA"
   },
   {
-    "name": "FORTRAN",
-    "scores": {
-      "GITLAB": 1.5282596086383273
-    }
-  },
-  {
-    "name": "BACKEND",
     "scores": {
       "GITHUB": 3.5294512637052966,
-      "GITLAB": 0.17552372824199058
-    }
+      "GITLAB": 0.17552372824199058,
+      "STACK_EXCHANGE": 1.4052950366402333
+    },
+    "name": "BACKEND"
+  },
+  {
+    "scores": {
+      "GITLAB": 1.5282596086383273
+    },
+    "name": "FORTRAN"
+  },
+  {
+    "scores": {
+      "STACK_EXCHANGE": 3.0475980581088287
+    },
+    "name": "DEPENDENCY-INJECTION"
+  },
+  {
+    "scores": {
+      "STACK_EXCHANGE": 3.4606189253643604
+    },
+    "name": "EJB"
+  },
+  {
+    "scores": {
+      "STACK_EXCHANGE": 0.10718195620673304
+    },
+    "name": "INVERSION-OF-CONTROL"
+  },
+  {
+    "scores": {
+      "STACK_EXCHANGE": 0.6884650863233734
+    },
+    "name": "SPRING"
   }
 ]
