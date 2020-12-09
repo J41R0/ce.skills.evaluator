@@ -6,7 +6,7 @@ from flask_restx import Resource
 from evaluator.api.namespace import api_namespace
 from evaluator.api.dto.profile import ProfilesDto
 from evaluator.api.dto.skill import EvaluatedSkillsDto
-from evaluator.app.evaluation_service import evaluate_skills
+from evaluator.app.evaluation_service import evaluate_providers_skills
 
 
 @api_namespace.route('evaluate')
@@ -122,10 +122,10 @@ class Evaluator(Resource):
         }
         """
         profiles_data = ProfilesDto()
-        evaluated_skills = evaluate_skills(profiles_data.profiles,
-                                           profiles_data.scale_lower_bound,
-                                           profiles_data.scale_higher_bound,
-                                           profiles_data.infer_skills)
+        evaluated_skills = evaluate_providers_skills(profiles_data.profiles,
+                                                     profiles_data.scale_lower_bound,
+                                                     profiles_data.scale_higher_bound,
+                                                     profiles_data.infer_skills)
         skills_json = EvaluatedSkillsDto.build_json_from_skills(evaluated_skills)
         return skills_json, http.HTTPStatus.OK
 
@@ -243,10 +243,10 @@ class NaiveEvaluator(Resource):
         }
         """
         profiles_data = ProfilesDto()
-        evaluated_skills = evaluate_skills(profiles_data.profiles,
-                                           profiles_data.scale_lower_bound,
-                                           profiles_data.scale_higher_bound,
-                                           custom_evaluation=False)
+        evaluated_skills = evaluate_providers_skills(profiles_data.profiles,
+                                                     profiles_data.scale_lower_bound,
+                                                     profiles_data.scale_higher_bound,
+                                                     custom_evaluation=False)
         skills_json = EvaluatedSkillsDto.build_json_from_skills(evaluated_skills)
         return skills_json, http.HTTPStatus.OK
 
