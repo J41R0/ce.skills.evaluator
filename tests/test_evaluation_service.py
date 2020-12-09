@@ -4,7 +4,7 @@ import os.path
 import unittest
 
 sys.path.append('../')
-from evaluator.app.evaluation_service import evaluate_skills
+from evaluator.app.evaluation_service import evaluate_providers_skills
 
 
 class EvaluationServiceTests(unittest.TestCase):
@@ -25,9 +25,9 @@ class EvaluationServiceTests(unittest.TestCase):
         with open(default_evaluation_response_path, 'r') as file:
             str_result = file.read()
         expected_result = json.loads(str_result)
-        skills_evaluated = evaluate_skills(self.default_profiles,
-                                           self.scale_lower_bound,
-                                           self.scale_higher_bound)
+        skills_evaluated = evaluate_providers_skills(self.default_profiles,
+                                                     self.scale_lower_bound,
+                                                     self.scale_higher_bound)
         func_result = skills_evaluated.get_skills_data()
         final_result = []
         for key in func_result:
@@ -47,10 +47,10 @@ class EvaluationServiceTests(unittest.TestCase):
                 fort_pos = element_pos
         if fort_pos is not None:
             del expected_result[fort_pos]
-        skills_evaluated = evaluate_skills(self.default_profiles,
-                                           self.scale_lower_bound,
-                                           self.scale_higher_bound,
-                                           infer_skills=False)
+        skills_evaluated = evaluate_providers_skills(self.default_profiles,
+                                                     self.scale_lower_bound,
+                                                     self.scale_higher_bound,
+                                                     infer_skills=False)
         func_result = skills_evaluated.get_skills_data()
         final_result = []
         for key in func_result:
@@ -64,7 +64,7 @@ class EvaluationServiceTests(unittest.TestCase):
         with open(default_evaluation_response_path, 'r') as file:
             str_result = file.read()
         expected_result = json.loads(str_result)
-        skills_evaluated = evaluate_skills(self.default_profiles, -3, 7)
+        skills_evaluated = evaluate_providers_skills(self.default_profiles, -3, 7)
         func_result = skills_evaluated.get_skills_data()
         final_result = []
         for key in func_result:
@@ -81,7 +81,7 @@ class EvaluationServiceTests(unittest.TestCase):
         with open(default_evaluation_response_path, 'r') as file:
             str_result = file.read()
         expected_result = json.loads(str_result)
-        skills_evaluated = evaluate_skills(self.default_profiles, -10, 0)
+        skills_evaluated = evaluate_providers_skills(self.default_profiles, -10, 0)
         func_result = skills_evaluated.get_skills_data()
         final_result = []
         for key in func_result:
