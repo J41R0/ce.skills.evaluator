@@ -23,7 +23,7 @@ class StackExchangeEvaluator(Evaluator):
         evaluated_skill_list = []
         profile_reputation = int(profile.stats['reputation'])
         reputation_contribution = functions.Activation.sigmoid_hip(profile_reputation, STACK_EXC_REPUTATION_LAMBDA)
-        fcm_evaluator = knowledge_base.load_providers_fcm()
+        fcm_evaluator = knowledge_base.load_skills_fcm()
         for skill in profile.skills:
             # if the concept is already in the knowledge base there is no change when is added
             fcm_evaluator.add_concept(skill.name)
