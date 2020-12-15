@@ -21,9 +21,12 @@ class StackExchangeEvaluator(Evaluator):
 
         """
         evaluated_skill_list = []
-        profile_reputation = int(profile.stats['reputation'])
+        try:
+            profile_reputation = int(float(profile.stats['reputation']))
+        except Exception as err:
+            raise Exception("Cannot load StackExchange reputation due: '" + str(err) + "'")
         reputation_contribution = functions.Activation.sigmoid_hip(profile_reputation, STACK_EXC_REPUTATION_LAMBDA)
-        fcm_evaluator = knowledge_base.load_providers_fcm()
+        fcm_evaluator = knowledge_base.load_skills_fcm()
         for skill in profile.skills:
             # if the concept is already in the knowledge base there is no change when is added
             fcm_evaluator.add_concept(skill.name)

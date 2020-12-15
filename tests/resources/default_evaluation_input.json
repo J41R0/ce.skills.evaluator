@@ -111,7 +111,7 @@
     {
       "provider": "STACK_EXCHANGE",
       "stats": {
-        "reputation": "100"
+        "reputation": "100.0"
       },
       "repositories": [],
       "skills": [

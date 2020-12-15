@@ -20,7 +20,7 @@ class GitBasedEvaluator(Evaluator):
             total_project_bytes[skill.repository_id] += skill.value
 
         for repo_id in skills_relation:
-            projects_fcm.append(knowledge_base.load_providers_fcm())
+            projects_fcm.append(knowledge_base.load_skills_fcm())
             for skill in skills_relation[repo_id]:
                 projects_fcm[-1].add_concept(skill.name)
                 skill_value = skill.contribution_factor * total_project_bytes[skill.repository_id]
@@ -31,6 +31,7 @@ class GitBasedEvaluator(Evaluator):
 
         if len(projects_fcm) > 0:
             final_fcm = join_maps(projects_fcm, ignore_zeros=True, value_strategy='highest')
+            final_fcm.set_map_decision_function("EXITED")
             if infer_skills:
                 result = final_fcm.get_final_state(concepts_type='any')
             else:

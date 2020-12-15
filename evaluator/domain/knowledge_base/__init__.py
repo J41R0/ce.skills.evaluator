@@ -1,7 +1,7 @@
 from py_fcm import from_json
 
 
-def load_providers_fcm():
+def load_skills_fcm():
     with open('evaluator/domain/knowledge_base/kb_stored/project_kb.json', 'r') as file:
         project_kb_json = file.read()
         knowledge_base = from_json(project_kb_json)

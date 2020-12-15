@@ -44,8 +44,8 @@ class SkillsEvaluation:
         return self.__skill_data.copy()
 
 
-def evaluate_skills(profiles: list, scale_lower_bound: float, scale_higher_bound: float,
-                    infer_skills=True, custom_evaluation=True) -> SkillsEvaluation:
+def evaluate_providers_skills(profiles: list, scale_lower_bound: float, scale_higher_bound: float,
+                              infer_skills=True, custom_evaluation=True) -> SkillsEvaluation:
     evaluations = SkillsEvaluation(scale_lower_bound, scale_higher_bound)
     for profile in profiles:
         current_profile = ProfileFactory.from_dict(profile, custom_evaluation)
