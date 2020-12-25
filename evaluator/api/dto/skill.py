@@ -6,6 +6,7 @@ from evaluator.api.namespace import api_namespace
 class EvaluatedSkillsDto:
     user_skill = api_namespace.model('evaluated_skill', {
         'name': fields.String(required=True, description='profile name'),
+        'final_evaluation': fields.Float(required=True, description='final skill evaluation'),
         'scores': fields.Raw(required=True, description='map shaped { -skill_name- : -value-}')
     })
 
