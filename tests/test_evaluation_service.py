@@ -72,6 +72,7 @@ class EvaluationServiceTests(unittest.TestCase):
         for element in expected_result:
             for provider in element["scores"]:
                 element["scores"][provider] = element["scores"][provider] - 3
+            element["final_evaluation"] = element["final_evaluation"] - 3
         for element in final_result:
             self.assertIn(element, expected_result)
 
@@ -89,5 +90,6 @@ class EvaluationServiceTests(unittest.TestCase):
         for element in expected_result:
             for provider in element["scores"]:
                 element["scores"][provider] = element["scores"][provider] - 10
+            element["final_evaluation"] = element["final_evaluation"] - 10
         for element in final_result:
             self.assertIn(element, expected_result)
