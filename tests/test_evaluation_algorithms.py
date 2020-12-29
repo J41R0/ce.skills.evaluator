@@ -109,7 +109,7 @@ class GitHubEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(github_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.6470245324800256, eval_sk.value)
+                self.assertEqual(0.5484283430363441, eval_sk.value)
             if eval_sk.name == "JAVA":
                 self.assertEqual(0.6470245324800256, eval_sk.value)
 
@@ -156,7 +156,7 @@ class GitLabEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(gitlab_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.030796799479009186, eval_sk.value)
+                self.assertEqual(0.024640244562941203, eval_sk.value)
             if eval_sk.name == "JAVA":
                 self.assertEqual(0.030796799479009186, eval_sk.value)
 
