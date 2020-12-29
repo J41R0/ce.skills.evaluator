@@ -30,10 +30,10 @@
           "forks": 1,
           "stars": 2,
           "views": 7,
-          "totalCommits": 50,
-          "userCommits": 15,
-          "userAdditions": 50,
-          "totalAdditions": 500
+          "totalCommits": 1000,
+          "userCommits": 700,
+          "userAdditions": 5000,
+          "totalAdditions": 50000
         },
         {
           "id": 1,
@@ -72,8 +72,8 @@
           "forks": 1,
           "stars": 2,
           "views": 7,
-          "totalCommits": 50,
-          "userCommits": 15,
+          "totalCommits": 1000,
+          "userCommits": 700,
           "userAdditions": 10000,
           "totalAdditions": 100000
         },
