@@ -95,8 +95,8 @@ class ProfileFactoryTests(unittest.TestCase):
         self.assertEqual(1, repository_obj.forks)
         self.assertEqual(2, repository_obj.stars)
         self.assertEqual(7, repository_obj.views)
-        self.assertEqual(50, repository_obj.total_commits)
-        self.assertEqual(15, repository_obj.user_commits)
+        self.assertEqual(1000, repository_obj.total_commits)
+        self.assertEqual(700, repository_obj.user_commits)
 
     def test_skill_generation(self):
         skill_obj = ProfileFactory.from_dict(self.github_profile).skills[0]
