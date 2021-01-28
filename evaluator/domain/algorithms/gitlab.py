@@ -30,9 +30,7 @@ class GitLabPreprocessor(GitBasedPreprocessor):
         """
         projects_contribution = {}
         for repository in profile.repositories:
-            if repository.total_additions != 0 and repository.user_additions != 0:
-                projects_contribution[repository.id] = repository.user_additions / repository.total_additions
-            elif repository.total_commits != 0 and repository.user_commits != 0:
+            if repository.total_commits != 0 and repository.user_commits != 0:
                 projects_contribution[repository.id] = repository.user_commits / repository.total_commits
             else:
                 projects_contribution[repository.id] = 1
