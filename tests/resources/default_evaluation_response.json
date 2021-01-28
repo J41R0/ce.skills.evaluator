@@ -15,36 +15,36 @@
   },
   {
     "scores": {
-      "GITHUB": 5.596234984390845,
-      "GITLAB": 0.3583539996568157
+      "GITHUB": 5.288147813867608,
+      "GITLAB": 1.810864247838534
     },
     "name": "C++",
-    "final_evaluation": 5.596234984390845
+    "final_evaluation": 5.288147813867608
   },
   {
     "scores": {
-      "GITHUB": 6.470245324800255,
-      "GITLAB": 0.30796799479009185,
+      "GITHUB": 3.6008248743665727,
+      "GITLAB": 0.17139053629055281,
       "STACK_EXCHANGE": 2.4215496714015377
     },
     "name": "JAVA",
-    "final_evaluation": 6.470245324800255
+    "final_evaluation": 3.6008248743665727
   },
   {
     "scores": {
-      "GITHUB": 3.5294512637052966,
-      "GITLAB": 0.17552372824199058,
+      "GITHUB": 2.0241266683602737,
+      "GITLAB": 0.09768949792723337,
       "STACK_EXCHANGE": 1.4052950366402333
     },
     "name": "BACKEND",
-    "final_evaluation": 3.5294512637052966
+    "final_evaluation": 2.0241266683602737
   },
   {
     "scores": {
-      "GITLAB": 1.5282596086383273
+      "GITLAB": 0.8505079694863805
     },
     "name": "FORTRAN",
-    "final_evaluation": 1.5282596086383273
+    "final_evaluation": 0.8505079694863805
   },
   {
     "scores": {

@@ -43,7 +43,7 @@
           "stars": 0,
           "views": 0,
           "totalCommits": 0,
-          "userCommits": 0,
+          "userCommits": 400,
           "userAdditions": 0,
           "totalAdditions": 0
         }
@@ -73,9 +73,7 @@
           "stars": 2,
           "views": 7,
           "totalCommits": 1000,
-          "userCommits": 700,
-          "userAdditions": 10000,
-          "totalAdditions": 100000
+          "userCommits": 700
         },
         {
           "id": 1,
@@ -85,9 +83,7 @@
           "stars": 0,
           "views": 0,
           "totalCommits": 0,
-          "userCommits": 0,
-          "userAdditions": 0,
-          "totalAdditions": 0
+          "userCommits": 400
         }
       ],
       "skills": [
