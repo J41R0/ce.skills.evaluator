@@ -32,6 +32,10 @@ class ProfileFactory:
 
     @staticmethod
     def __repository_from(repository: dict) -> Repository:
+        if 'totalAdditions' not in repository:
+            repository['totalAdditions'] = 0
+        if 'userAdditions' not in repository:
+            repository['userAdditions'] = 0
         return Repository(repository['id'], repository['isFork'], repository['contributors'],
                           repository['totalCommits'], repository['userCommits'],
                           repository['forks'], repository['stars'], repository['views'],

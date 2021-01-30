@@ -109,9 +109,9 @@ class GitHubEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(github_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.5596234984390845, eval_sk.value)
+                self.assertEqual(0.5288147813867609, eval_sk.value)
             if eval_sk.name == "JAVA":
-                self.assertEqual(0.6470245324800256, eval_sk.value)
+                self.assertEqual(0.3600824874366573, eval_sk.value)
 
     def test_evaluation_function_zero_skills_value(self):
         github_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][1])
@@ -146,7 +146,7 @@ class GitLabEvaluatorTests(unittest.TestCase):
         gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
         preprocessor = GitLabPreprocessor()
         preprocessor.preprocess(gitlab_profile)
-        self.assertEqual(0.1, gitlab_profile.skills[0].contribution_factor)
+        self.assertEqual(0.7, gitlab_profile.skills[0].contribution_factor)
 
     def test_evaluation_function(self):
         gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
@@ -156,9 +156,9 @@ class GitLabEvaluatorTests(unittest.TestCase):
         result = evaluator.evaluate(gitlab_profile)
         for eval_sk in result:
             if eval_sk.name == "C++":
-                self.assertEqual(0.035835399965681566, eval_sk.value)
+                self.assertEqual(0.1810864247838534, eval_sk.value)
             if eval_sk.name == "JAVA":
-                self.assertEqual(0.030796799479009186, eval_sk.value)
+                self.assertEqual(0.01713905362905528, eval_sk.value)
 
     def test_evaluation_function_zero_skills_value(self):
         gitlab_profile = ProfileFactory.from_dict(self.def_input_dict['profiles'][2])
