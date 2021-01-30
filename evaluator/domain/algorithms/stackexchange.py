@@ -39,7 +39,7 @@ class StackExchangeEvaluator(Evaluator):
             result = fcm_evaluator.get_final_state(concepts_type=TYPE_SIMPLE)
 
         for skill_name in result:
-            if 0 < result[skill_name]:
+            if result[skill_name] > 0:
                 final_evaluation = result[skill_name] + (0.2 * reputation_contribution)
                 if final_evaluation > 1:
                     final_evaluation = 1
