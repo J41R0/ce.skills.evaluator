@@ -9,7 +9,7 @@ setuptools.setup(
     scripts=[],
     author="Cuban engineer",
     author_email="contact@cuban.engineer",
-    description="Default skill evaluator project for cuban engineer plataform",
+    description="Default skill evaluator project for cuban engineer platform",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="",
